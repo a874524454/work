@@ -1,5 +1,9 @@
 <template>
   <div id="app">
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no"
+    />
     <van-nav-bar title="录音" left-text="返回" left-arrow @click-left="back" />
     <van-pull-refresh v-model="refreshing" @refresh="refresh">
       <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
@@ -38,6 +42,7 @@
   </div>
 </template>
 
+<script src="./node_modules/amfe-flexible/index.js"></script>
 <script>
 export default {
   data() {
@@ -50,15 +55,15 @@ export default {
       totalPage: 0,
       currentPage: 1,
       isLoading: false,
-      offset: 300,
+      offset: 50,
     };
   },
   methods: {
     handleChange(val) {
       console.log(val);
     },
-    back(){
-      this.toast('返回');
+    back() {
+      this.$router.back();
     },
 
     refresh() {
@@ -66,6 +71,7 @@ export default {
         this.list = [];
         this.loading = false;
         this.refreshing = false;
+        this.finished=false
         this.onLoad();
       }, 1000);
     },
@@ -88,11 +94,11 @@ export default {
 };
 </script>
 
-<style>
-body{
- background-color: #f0f0f0;
+<style scoped>
+body {
+  background-color: #f0f0f0;
 }
-.van-pull-refresh{
+.van-pull-refresh {
   margin-top: 10px;
 }
 .van-collapse-item__title {
