@@ -12,5 +12,9 @@ module.exports = {
           ]
         }
       }
-    }
+    },
+      //vue-cli3.0 里面的 vue.config.js做配置
+devServer: {
+  proxy:'http://192.168.40.104:8875'
   }
+}

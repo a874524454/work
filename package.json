@@ -10,7 +10,9 @@
   "dependencies": {
     "@vant/weapp": "^1.4.0",
     "amfe-flexible": "^2.2.1",
+    "axios": "^0.19.2",
     "core-js": "^3.6.5",
+    "dayjs": "^1.8.30",
     "element-ui": "^2.13.2",
     "vant": "^2.9.3",
     "vue": "^2.6.11",
@@ -23,6 +25,7 @@
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
     "eslint-plugin-vue": "^6.2.2",
+    "koa2-cors": "^2.0.6",
     "postcss-pxtorem": "^5.1.1",
     "vue-template-compiler": "^2.6.11"
   },
