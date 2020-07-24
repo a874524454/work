@@ -1,15 +1,29 @@
 <template>
   <div id="app">
     <van-pull-refresh v-model="refreshing" @refresh="refresh">
-      <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad" offset='0'>
+      <van-list
+        v-model="loading"
+        :finished="finished"
+        finished-text="没有更多了"
+        @load="onLoad"
+        offset="0"
+      >
         <van-collapse v-model="activeNames">
-          <van-collapse-item v-for="(item,index) in typeList" :key="index" :title="item.uploadtime" :name="index">
+          <van-collapse-item
+            v-for="(item,index) in typeList"
+            :key="index"
+            :title="item.uploadtime"
+            :name="index"
+          >
             <div class="main">
-              <div class="left"><img src="./assets/img.png" alt=""></div>
+              <div class="left">
+                <img src="./assets/img.png" alt />
+              </div>
               <div class="right">
                 <a class="title">{{item.filename}}</a>
-                <a>{{formatBytes(item.filesize)}}</a>
-                <a>{{item.uploadtime}}</a>
+                <a>{{item.filesize}}</a>
+                <!-- <a>{{item.uploadtime|servertime2Jstime}}</a> -->
+                <a>{{getDateDiff(item.uploadtime)}}</a>
               </div>
             </div>
           </van-collapse-item>
@@ -23,6 +37,7 @@
 <script>
 import {apiGetType} from './api/article'
 import Axios from 'axios';
+formatDate(+new Date(), 'yyyy-MM-dd HH:mm:ss')
 export default {
   data() {
     return {
@@ -510,8 +525,6 @@ export default {
   },
   created(){
     this.getType()
-    console.log(dayjs());
-    console.log(bytesToSize(1024));
   },
   methods: {
     refresh() {
@@ -524,13 +537,14 @@ export default {
         this.getType();
       }, 1000);
     },
-    onLoad() {
+    onLoad(e) {
       setTimeout(() => {
         this.finished=false
         this.page=this.page+1
         this.getType()
         this.loading = false;
         // 加载状态结束
+
         if(this.length != 5){
         this.finished = true;
         }
@@ -558,6 +572,7 @@ export default {
       console.log();
       console.log(this.length);
       console.log(this.typeList);
+      this.loading=false
     },servertime2Jstime(timestr){
     if (!timestr) {
         return new Date();
@@ -568,9 +583,23 @@ export default {
     } else {
         return new Date();
     }
-  },formatBytes(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]}
-},
-};
+  },
+  formatBytes(a,b){if(0==a)return"0 Bytes";var c=1024,d=b||2,e=["Bytes","KB","MB","GB","TB","PB","EB","ZB","YB"],f=Math.floor(Math.log(a)/Math.log(c));return parseFloat((a/Math.pow(c,f)).toFixed(d))+" "+e[f]},
+  },
+filters:{
+servertime2Jstime:function (timestr){
+    if (!timestr) {
+        return new Date();
+    }
+    var t = Date.parse(timestr);
+    if (!isNaN(t)) {
+        return new Date(Date.parse(timestr.replace(/-/g, "/")));
+    } else {
+        return new Date();
+    }
+  }
+}
+}
 </script>
 
 <style>
@@ -595,7 +624,7 @@ body {
 .main:nth-child(2) {
   border-top: 1px solid #efefef;
 }
-.main .left img{
+.main .left img {
   width: 50px;
   height: 50px;
   border-radius: 5px;
