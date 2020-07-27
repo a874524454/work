@@ -9,7 +9,8 @@
         :offset="10"
       >
         <van-collapse v-model="activeNames"  @scroll="scrollEvent($event)">
-          <van-collapse-item v-for="(value,key,index) in List" :key='index' :name="index" >
+        <el-button v-if="activeName.length === -1" size="small" icon="el-icon-third-plus-arrow-down" @click="allExpand">全部展示</el-button>
+          <van-collapse-item v-for="(value,key,index) in List" :key='index' :name="index" @change='change(val)'>
             <template slot="title">{{key | fnTime}}</template>
             <div class="main" v-for="(avalue,aindex) in value" :key='aindex'>
               <div class="left">
@@ -38,7 +39,7 @@ export default {
     //   activeNames: ['index'],
       activeNames: [0,1,2,3,4],
       typeList: [],
-    //   typeList: typeList,
+      // typeList: typeList,
       loading: false,
       finished: false,
       refreshing: false,
@@ -49,7 +50,19 @@ export default {
       List:{}
     };
   },
+  created(){
+    this.allExpand()
+  },
   methods: {
+    change(val){
+      console.log(val);
+    },
+    allExpand(){
+      this.activeName = [] // 注意：由于每点开一个的单独面板 activeName都会发生变化，所以点击全部展开的时候要将activeName置空
+      for (const collapseTitleData of this.List) {
+        this.activeName.push(collapseTitleData.id)
+      }
+    },
       scrollEvent(e){
           console.log(e);
       },
