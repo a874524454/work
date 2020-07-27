@@ -62,9 +62,9 @@ export default {
       // if(this.length==10){
         this.page=this.page+1
         this.getType()
-        this.loading = false;
-        // }
-        // 加载状态结束}
+        this.loading = true;
+      // }
+      // 加载状态结束}
       //   else{
       //     this.loading=false
       //     this.finished = true;
@@ -99,7 +99,7 @@ export default {
           // userid:this.userid,
           page: {
             page: this.page,
-            pagesize: 10
+            pagesize: 5
           }
         }
       });
