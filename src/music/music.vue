@@ -8,10 +8,15 @@
         @load="onLoad"
         :offset="10"
       >
-        <van-collapse v-model="activeNames"  @scroll="scrollEvent($event)">
-          <van-collapse-item v-for="(value,key,index) in List" :key='index' :name="index" >
+        <van-collapse v-model="activeNames" @scroll="scrollEvent($event)" @change="handleChange()">
+          <van-collapse-item v-for="(value,key,index) in List" :key="index" :name="index+''">
             <template slot="title">{{key | fnTime}}</template>
-            <div class="main" v-for="(avalue,aindex) in value" :key='aindex'>
+            <div
+              class="main"
+              v-for="(avalue,aindex) in value"
+              :key="aindex"
+              @click="download(avalue.filepath)"
+            >
               <div class="left">
                 <img src="../assets/img.png" alt />
               </div>
@@ -22,60 +27,65 @@
               </div>
             </div>
           </van-collapse-item>
-        </van-collapse>
+        </van-collapse> 
+        
       </van-list>
     </van-pull-refresh>
+   
   </div>
 </template>
 
 <script src="./node_modules/amfe-flexible/index.js"></script>
 <script>
-import {typeList} from '../utils/type'
+import { typeList } from "../utils/type";
 import Axios from "axios";
 export default {
   data() {
     return {
-    //   activeNames: ['index'],
-      activeNames: [0,1,2,3,4],
+      activeNames: [],
       typeList: [],
-    //   typeList: typeList,
+      //   typeList: typeList,
       loading: false,
       finished: false,
       refreshing: false,
       page: 0,
-      userid:this.$route.query.userid,
-      end:[],
-      pagesize:3,
-      List:{}
+      userid: this.$route.query.userid,
+      end: [],
+      pagesize: 3,
+      List: {},
+      show: false,
+      tableDataArr:[]
     };
   },
   methods: {
-      scrollEvent(e){
-          console.log(e);
-      },
-      getIndex(index){
-        console.log(index);
-      },
-      handleChange(val){
-        console.log(val);
-      },
+    download(v) {
+      console.log(v);
+      window.location.href = v;
+    },
+    add(){
+      this.activeNames=[]
+      for(var key in Object.values(this.List)){
+        this.tableDataArr.push(key+'');
+      }
+      this.activeNames = this.tableDataArr;
+    },
     refresh() {
-        this.List = {};
-        console.log(this.List);
-        this.page = 1;
-        this.loading = true;
-        this.refreshing = false;
-        this.finished = false;
-        this.getType();
-
+      this.List = {};
+      console.log(this.List);
+      this.page = 1;
+      this.loading = true;
+      this.refreshing = false;
+      this.finished = false;
+      this.getType();
     },
     onLoad() {
-        this.getType()
-        this.loading = true;
-        if(!this.activeNames.includes(''+2)){
-            this.loading=false
-            return
-        }
+      // if(!this.activeNames.includes(''+2)){
+      //     this.loading=false
+      //     return
+      // }
+      this.getType();
+      this.loading = true;
+      this.add()
     },
     async getType() {
       let data = await Axios({
@@ -83,51 +93,43 @@ export default {
         method: "POST",
         data: {
           where: {
-            userid:this.userid
+            userid: this.userid,
           },
           page: {
             page: this.page,
-            pagesize:this.pagesize
-          }
-        }
+            pagesize: this.pagesize,
+          },
+        },
       });
-    //   console.log(data);
-      console.log(data.data.data.files);
-      if(data.data.data.files){
-      this.typeList = [...this.typeList,...data.data.data.files];
-      this.typeList=new Set(this.typeList)
-      console.log(this.typeList);
-      let obj = {};
-      this.typeList.forEach((val, key) => {
-         let time = val.uploadtime.split(' ');
-         let year = time[0];
-         val.uploadtime = time.join(" ")
-         let date = new Date(val.uploadtime); 
-         val.timestamp = Date.parse(date);
+      if (data.data.data.files) {
+        this.typeList = [...this.typeList, ...data.data.data.files];
+        this.typeList = new Set(this.typeList);
+        let obj = {};
+        this.typeList.forEach((val, key) => {
+          let time = val.uploadtime.split(" ");
+          let year = time[0];
+          val.uploadtime = time.join(" ");
+          let date = new Date(val.uploadtime);
+          val.timestamp = Date.parse(date);
 
-         if(obj[year]) {
-            obj[year].push(val)
-            obj[year].sort(function(a, b){
-               return a.timestamp - b.timestamp
-            })
-         } else {
-            obj[year] = []
-            obj[year].push(val)
-         }
-       })
-    //   this.List=Object.values(obj)
-      this.List=obj
-    //    console.log(obj);
-      console.log(this.List);
-      console.log(Object.values(obj).concat())
-      console.log(Object.values(obj).length)
-      this.loading=false
-      this.finished=false
-      this.page=this.page+1
-      }else{
-        this.loading=false
-        this.finished=true
-        return
+          if (obj[year]) {
+            obj[year].push(val);
+            obj[year].sort(function (a, b) {
+              return a.timestamp - b.timestamp;
+            });
+          } else {
+            obj[year] = [];
+            obj[year].push(val);
+          }
+        });
+        this.List = obj;
+        this.loading = false;
+        this.finished = false;
+        this.page = this.page + 1;
+      } else {
+        this.loading = false;
+        this.finished = true;
+        return;
       }
     },
     servertime2Jstime(timestr) {
@@ -148,10 +150,10 @@ export default {
         e = ["Bytes", "KB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"],
         f = Math.floor(Math.log(a) / Math.log(c));
       return parseFloat((a / Math.pow(c, f)).toFixed(d)) + " " + e[f];
-    }
+    },
   },
   filters: {
-    servertime2Jstime: function(time) {
+    servertime2Jstime: function (time) {
       let ptime = new Date(time).getTime();
       const twentyFourHours = 24 * 60 * 60 * 1000;
       const fortyEightHours = 24 * 60 * 60 * 1000 * 2;
@@ -164,13 +166,13 @@ export default {
       const yesterdayTime = new Date(todayTime - twentyFourHours).getTime();
       const lastYesterdayTime = new Date(todayTime - fortyEightHours).getTime();
 
-        let timestr1=time.split(' ')[1].split(':')
-        let timestr2=time.split(' ')[0].split('-')
-        timestr1.splice(2,1);
-        timestr2.splice(0,1);
-        let time1=timestr1.join().replace(',',':');
-        let time2=timestr2.join().replace(',','.');
-        return time2+' '+time1;
+      let timestr1 = time.split(" ")[1].split(":");
+      let timestr2 = time.split(" ")[0].split("-");
+      timestr1.splice(2, 1);
+      timestr2.splice(0, 1);
+      let time1 = timestr1.join().replace(",", ":");
+      let time2 = timestr2.join().replace(",", ".");
+      return time2 + " " + time1;
     },
     fnTime(time) {
       let ptime = new Date(time).getTime();
@@ -191,17 +193,16 @@ export default {
         return "昨天 ";
       } else if (ptime < yesterdayTime && lastYesterdayTime <= ptime) {
         return "前天 ";
-      }
-      else {
-        let timestr=time.split(' ')[0].split('-')
-        timestr.splice(1,0,'年')
-        timestr.splice(3,0,'月')
-        timestr.splice(5,0,'日')
-        let time1=timestr.join().replace(/,/g,'');
+      } else {
+        let timestr = time.split(" ")[0].split("-");
+        timestr.splice(1, 0, "年");
+        timestr.splice(3, 0, "月");
+        timestr.splice(5, 0, "日");
+        let time1 = timestr.join().replace(/,/g, "");
         return time1;
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -209,7 +210,10 @@ export default {
 body {
   background-color: #f0f0f0;
 }
-.van-cell__title{
+.van-dialog__content {
+  padding: 10px 20px;
+}
+.van-cell__title {
   font-size: 16px;
   font-weight: bold;
 }
