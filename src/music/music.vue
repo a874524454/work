@@ -8,7 +8,7 @@
         @load="onLoad"
         :offset="10"
       >
-        <van-collapse v-model="activeNames" @scroll="scrollEvent($event)" @change="handleChange()">
+        <van-collapse v-model="activeNames" @scroll="scrollEvent($event)" @change="onLoad()">
           <van-collapse-item v-for="(value,key,index) in List" :key="index" :name="index+''">
             <template slot="title">{{key | fnTime}}</template>
             <div
@@ -42,7 +42,7 @@ import Axios from "axios";
 export default {
   data() {
     return {
-      activeNames: [],
+      activeNames: ['0'],
       typeList: [],
       //   typeList: typeList,
       loading: false,
@@ -54,7 +54,8 @@ export default {
       pagesize: 3,
       List: {},
       show: false,
-      tableDataArr:[]
+      tableDataArr:[],
+      number:[]
     };
   },
   methods: {
@@ -63,14 +64,21 @@ export default {
       window.location.href = v;
     },
     add(){
-      this.activeNames=[]
-      for(var key in Object.values(this.List)){
-        this.tableDataArr.push(key+'');
-      }
-      this.activeNames = this.tableDataArr;
+      // for(var key in Object.values(this.List)){
+      //   this.tableDataArr.push(key+'');
+      // }
+      // this.activeNames = this.tableDataArr;
+      // console.log(this.activeNames);
+      let a=Reflect.ownKeys(this.List)
+      a.pop()
+      this.activeNames=['0']
+      a.forEach((val,index)=>{
+        this.activeNames.push(index+'')
+      })
     },
     refresh() {
       this.List = {};
+      this.activeNames=['0']
       console.log(this.List);
       this.page = 1;
       this.loading = true;
@@ -79,13 +87,28 @@ export default {
       this.getType();
     },
     onLoad() {
-      // if(!this.activeNames.includes(''+2)){
-      //     this.loading=false
-      //     return
-      // }
-      this.getType();
-      this.loading = true;
-      this.add()
+      let a=Reflect.ownKeys(this.List)
+      a.pop()
+      a.forEach((val,index)=>{
+        this.activeNames.push(index+'')
+      })
+      console.log((a.length-1).toString());
+      console.log(this.activeNames);
+
+      if(a.length>0){
+      if(!this.activeNames.includes((a.length-1).toString())){
+        this.loading=false
+        return
+      }else{
+        console.log((a.length-1).toString());
+        this.getType();
+        this.loading = true;
+        this.add()
+        }
+        }else{
+        this.getType();
+        this.loading = true;
+        }
     },
     async getType() {
       let data = await Axios({
@@ -121,6 +144,7 @@ export default {
             obj[year] = [];
             obj[year].push(val);
           }
+
         });
         this.List = obj;
         this.loading = false;
