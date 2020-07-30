@@ -13,6 +13,12 @@ module.exports = {
           ]
         }
       }
+    },chainWebpack: config => {
+      config.module
+        .rule('images')
+          .use('url-loader')
+            .loader('url-loader')
+            .tap(options => Object.assign(options, { limit: 0 }))
     },
       //vue-cli3.0 里面的 vue.config.js做配置
       devServer: {

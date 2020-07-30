@@ -3,10 +3,17 @@ import Vant from 'vant';
 import 'vant/lib/index.css';
 import App from './App.vue';
 import 'amfe-flexible';
-import Axios from 'axios'
+import axios from 'axios'
 import router from './router/router.js'
+import $ from 'jquery'
+import ElementUI from 'element-ui';
+import 'element-ui/lib/theme-chalk/index.css';
+
+Vue.use(ElementUI);
 Vue.use(Vant)
-Vue.prototype.$axios = Axios;
+window.$=$
+Vue.prototype.$http = axios;
+
 new Vue({
   router,
   components:{

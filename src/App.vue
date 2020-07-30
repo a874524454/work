@@ -1,6 +1,6 @@
 <template>
+
   <div id="app">
-    <van-tag type="primary">标签</van-tag>
     <van-pull-refresh v-model="refreshing" @refresh="refresh">
       <van-list
         v-model="loading"
@@ -9,21 +9,15 @@
         @load="onLoad"
         :offset="1"
       >
-        <van-collapse v-model="activeNames" @change="to()">
-          <van-collapse-item v-for="(value,key,index) in List" :key="index" :name="index">
+        <van-collapse v-model="activeNames">
+          <van-collapse-item v-for="(value,key,index) in List" ref='index' :key="index" :name="index">
             <template slot="title">{{key | fnTime}}</template>
             <div
               class="main"
               v-for="(avalue,aindex) in value"
               :key="aindex"
-              @click="log(value.length)"
+              @click="download()"
             >
-            <!-- <div
-              class="main"
-              v-for="(avalue,aindex) in value"
-              :key="aindex"
-              @click="download(avalue.filepath)"
-            > -->
               <div class="left">
                 <img src="../src/assets/img.png" alt />
               </div>
@@ -43,7 +37,6 @@
 </template>
 <script src="./node_modules/amfe-flexible/index.js"></script>
 <script>
-import {typeList} from './type'
 import Axios from "axios";
 export default {
   data() {
@@ -54,41 +47,40 @@ export default {
       finished: false,
       refreshing: false,
       page: 0,
-      userid: 0,
-      // userid: this.$route.query.userid,
+      userid: this.$route.query.userid,
       end: [],
       pagesize: 3,
       List: {},
       show: false,
       tableDataArr:[],
       number:[],
-      teauserid:this.$route.query.teauserid
+      teauserid:this.$route.query.teauserid,
+      isLoading:true
     };
   },
+  created(){
+    let urlp=url.parseURL(window.location.href);
+    this.userid=urlp['userid']
+    this.teauserid=urlp['teauserid']
+  },
   methods: {
-    log(aindex){
-      console.log(aindex);
-      // console.log(Object.keys(this.List).length-1);
-    },
     download(v) {
-      // console.log(v);
       window.location.href = v;
     },
     add(){
-      var a=Reflect.ownKeys(this.List)
-      // let a=this.activeNames
-      a.pop()
-      this.activeNames=[]
+      let a=Object.keys(this.List)
       a.forEach((val,index)=>{
+        if(this.activeNames.includes(index)){
+          return
+        }else if(this.activeNames.includes(index+1)||this.activeNames.includes(index-1)&&this.finished){
+          return
+        }
         this.activeNames.push(index)
       })
-      console.log(a);
-      console.log(this.activeNames);
     },
     refresh() {
       this.List = {};
       this.activeNames=[]
-      // console.log(this.List);
       this.page = 1;
       this.loading = true;
       this.refreshing = false;
@@ -96,82 +88,77 @@ export default {
       this.getType();
     },
     onLoad() {
-      
-      if(Object.keys(this.List).length-1){
-
+      let a=Object.keys(this.List)
+      if(a.length>0){
+      let b=[]
+      a.forEach((val,index)=>{
+        b.push(index)
+      })
+      b.sort(function (a, b) {
+        return b-a;
+      })
+      let max=b[0]
+      this.isLoading=this.$refs.index[max].expanded
       }
-      // console.log((a.length-1).toString());
-      // console.log(this.activeNames);
-
-      // if(a.length>0){
-      // if(!this.activeNames.includes((a.length-1).toString())){
-        // this.loading=false
-        // return
-      // }else{
-        // console.log((a.length-1).toString());
-        this.getType();
+      if(this.isLoading){
+      if(a.length-1>0){
+        if(this.activeNames.includes(Object.keys(this.List).length-1)){
         this.loading = true;
-      //   }
-        // }
-        // else{
-        // this.getType();
-        // this.loading = true;
-        // }
+        this.getType();
+        }else{
+          return
+        }
+        }else{
+        this.loading = true;
+        this.getType();
+        }}else{
+          this.loading=false
+          return
+        }
     },
-    async getType() {
+    getType() {
       if(this.loading){
-      if(this.userid&&this.teauserid){
-      var data = await Axios({
-        url: "/sapi/upfiles/query",
-        method: "POST",
-        data: {
-          where: {
-            or:[
-            {'userid': this.userid},
-            {'teauserid':this.teauserid}
-            ]
-          },
-          page: {
-            page: this.page,
-            pagesize: this.pagesize,
-          },
-        },
-      })}else if(!this.teauserid&&this.userid){
-        var data = await Axios({
-        url: "/sapi/upfiles/query",
-        method: "POST",
-        data: {
-          where: {
-            or:[
-            {'userid': this.userid}
-            ]
-          },
-          page: {
-            page: this.page,
-            pagesize: this.pagesize,
-          },
-        },
-      })
-      }else if(!this.userid&&this.teauserid){
-        var data = await Axios({
-        url: "/sapi/upfiles/query",
-        method: "POST",
-        data: {
-          where: {
-            or:[
-            {'teauserid':this.teauserid}
-            ]
-          },
-          page: {
-            page: this.page,
-            pagesize: this.pagesize,
-          },
-        },
-      })
+        let obj=  {}
+        let orarray = [] 
+        if (this.userid){
+          orarray.push({
+            userid:this.userid
+          })
+        }
+        if(this.teauserid){
+          orarray.push({
+            teauserid:this.teauserid
+          })
+        }
+        obj['where'] = {
+          or:orarray
+        }
+        obj['page']={
+          page:this.page,
+          pagesize:this.pagesize
+        }
+        let url='/sapi/upfiles/query'
+        url.parseURL = (url) => {
+          var query = url && url.split('?')[1]
+          var queryArr = query && query.split('&')
+          var params = {}
+          queryArr &&
+          queryArr.forEach(function (item) {
+          var key = item.split('=')[0]
+          var value = item.split('=')[1]
+          params[key] = value
+        })
+          return params
       }
-      // if (data.data.data.files) {
-        // this.typeList = [...this.typeList, ...data.data.data.files];
-        this.typeList = typeList;
+      this.$http.post(url,{
+         obj
+      })
+      .then(res=>{
+        if(res.data.code!=0){
+          this.$message.error('进入失败')
+        }
+        console.log(res);
+        this.typeList = [...this.typeList, ...res.data.data.files];
         this.typeList = new Set(this.typeList);
         let obj = {};
         this.typeList.forEach((val, key) => {
@@ -180,7 +167,6 @@ export default {
           val.uploadtime = time.join(" ");
           let date = new Date(val.uploadtime);
           val.timestamp = Date.parse(date);
-
           if (obj[year]) {
             obj[year].push(val);
             obj[year].sort(function (a, b) {
@@ -190,20 +176,19 @@ export default {
             obj[year] = [];
             obj[year].push(val);
           }
-
         });
         this.List = obj;
+        
         this.loading = false;
         this.finished = false;
-        // this.activeNames.push(this.page)
         this.add()
-        console.log(this.activeNames);
         this.page = this.page + 1;
-      // } else {
-      //   this.loading = false;
-      //   this.finished = true;
-      //   return;
-      // }
+
+      })
+      .catch(res=>{
+        let tips='异常'
+        this.$message.error(tips)
+      })
       }
     },
     servertime2Jstime(timestr) {
@@ -281,8 +266,11 @@ export default {
 </script>
 
 <style>
-@media screen and (min-width:900px){
-  body{font-size: 16px;}
+@media screen and (min-width: 0px) {
+  html {
+    font-size: 100px !important;
+  }
+
 }
 body {
   background-color: #f0f0f0;

@@ -5,10 +5,6 @@ import music from '../music/music.vue'
 Vue.use(VueRouter)
 const routes =[
     {
-    path: '/',
-    component:music
-    },
-    {
     path: '/music',
     component:music
     }
