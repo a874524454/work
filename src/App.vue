@@ -7,7 +7,7 @@
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad"
-        :offset="100"
+        :offset="300"
       >
         <van-collapse v-model="activeNames">
           <van-collapse-item v-for="(value,key,index) in List" ref='index' :key="index" :name="index">
@@ -59,51 +59,21 @@ export default {
       isLoading:true
     };
   },
-  // created(){
-    // let urlp=this.parseURL(window.location.href);
-    // this.userid=urlp['userid']
-    // this.teauserid=urlp['teauserid']
-  // },
   mounted () {
     this.activeNames.push(this.number)
+    
   },
   beforeUpdate () {
     this.number++
     this.activeNames.push(this.number)
   },
   methods: {
-      parseURL(url){
-        var query = url && url.split('?')[1]
-        var queryArr = query && query.split('&')
-        var params = {}
-        queryArr &&
-        queryArr.forEach(function (item) {
-        var key = item.split('=')[0]
-        var value = item.split('=')[1]
-        params[key] = value
-        })
-        return params
-        },
     download(v) {
       window.location.href = v;
     },
-    // add(){
-    //   let a=Object.keys(this.List)
-    //    a.forEach((val,index)=>{
-    //     console.log(val);
-    //     console.log(index);
-    //     // if(this.activeNames.includes(index)||this.activeNames.includes(index+1)||(this.activeNames.includes(index-1)&&(this.loading))){
-    //     if(this.activeNames.includes(index)){
-    //     return
-    //     }
-    //     this.activeNames.push(index)
-    //   })
-    //   console.log(this.activeNames);
-    // },
     refresh() {
-      this.List = {};
-      this.activeNames=[]
-      this.page = 1;
+      this.typeList = [];
+      this.page = 0;
       this.loading = true;
       this.refreshing = false;
       this.finished = false;
@@ -138,7 +108,7 @@ export default {
           return
         }
     },
-    async getType() {
+    getType() {
       if(this.loading){
         let obj=  {}
         let orarray = [] 
@@ -186,7 +156,6 @@ export default {
         this.List = aTime;
         this.loading = false;
         this.finished = false;
-        // this.add()
         this.page = this.page + 1;
       })
       .catch(res=>{
@@ -277,7 +246,6 @@ export default {
   html {
     font-size: 100px !important;
   }
-
 }
 
 body {
