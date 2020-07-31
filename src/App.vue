@@ -1,5 +1,4 @@
 <template>
-
   <div id="app">
     <van-pull-refresh v-model="refreshing" @refresh="refresh">
       <van-list
@@ -7,9 +6,9 @@
         :finished="finished"
         finished-text="没有更多了"
         @load="onLoad"
-        :offset="300"
+        :offset="500"
       >
-        <van-collapse v-model="activeNames">
+        <van-collapse v-model="activeNames" @change="onLoad2()">
           <van-collapse-item v-for="(value,key,index) in List" ref='index' :key="index" :name="index">
             <template slot="title">{{key | fnTime}}</template>
             <div
@@ -42,6 +41,7 @@ import { apiGetType } from './api/article'
 export default {
   data() {
     return {
+      scrollHeight:'0px',
       activeNames: [],
       typeList: [],
       loading: false,
@@ -61,13 +61,18 @@ export default {
   },
   mounted () {
     this.activeNames.push(this.number)
-    
+    this.scrollHeight = window.innerHeight*0.7 + 'px';
   },
   beforeUpdate () {
     this.number++
     this.activeNames.push(this.number)
   },
   methods: {
+    onLoad2(){
+      if(this.isLoading&&!this.finished){
+
+      }
+    },
     download(v) {
       window.location.href = v;
     },
@@ -252,9 +257,18 @@ export default {
     font-size: 100px !important;
   }
 }
-
+html{height:100%}
+ body{
+   float:left;
+   width:100%;
+   height:100%;
+}
 body {
   background-color: #f0f0f0;
+  height: 100%;
+}
+#app{
+min-height:100%;
 }
 .van-dialog__content {
   padding: 10px 20px;
