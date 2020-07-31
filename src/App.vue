@@ -75,8 +75,13 @@ export default {
       this.typeList = [];
       this.page = 0;
       this.loading = true;
+      this.isLoading=true
       this.refreshing = false;
       this.finished = false;
+      let a=Object.keys(this.List)
+       a.forEach((val,index)=>{
+        this.activeNames.push(index)
+      })
       this.getType();
     },
     onLoad() {
