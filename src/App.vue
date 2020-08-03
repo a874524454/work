@@ -169,8 +169,6 @@ export default {
         this.page = this.page + 1;
       })
       .catch(res=>{
-        let tips='到底了'
-        this.$message.error(tips)
         this.loading=false
         this.isLoading=false
         this.finished=true
