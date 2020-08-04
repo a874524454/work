@@ -9,6 +9,9 @@ import 'vant/lib/index.css';
 Vue.use(Vant);
 import router from '../router/router'
 import less from 'less'
+import VueDirectiveImagePreviewer from 'vue-directive-image-previewer'
+import 'vue-directive-image-previewer/dist/assets/style.css'
+Vue.use(VueDirectiveImagePreviewer) 
 Vue.use(less)
 Vue.use(ElementUI)
 

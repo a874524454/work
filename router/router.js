@@ -2,7 +2,12 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import login from '../src/login/login.vue'
 import home from '../src/home/home.vue'
-import index from '../src/home/com/index.vue'
+import index from '../src/home/info/index.vue'
+import information from '../src/home/information/index.vue'
+import notation from '../src/home/notation/index.vue'
+import vote from '../src/home/vote/index.vue'
+import info1 from '../src/home/info/info1/info.vue'
+import info2 from '../src/home/info/info2/info2.vue'
 
 Vue.use(VueRouter)
 const routes =[
@@ -24,7 +29,33 @@ const routes =[
         },
         {
           path: 'index',
-          component: index 
+          component: index,
+          children:[
+            {
+              path: '/index',
+              redirect: '/home/information/info1'
+            },
+            {
+              path: 'info1',
+              component:info1
+            },
+            {
+              path: 'info2',
+              component:info2
+            }
+          ]
+        },
+        {
+          path: 'information',
+          component: information
+        },
+        {
+          path: 'notation',
+          component: notation 
+        },
+        {
+          path: 'vote',
+          component: vote 
         }
       ]
     }

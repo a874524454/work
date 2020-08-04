@@ -11,12 +11,12 @@
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <el-form
+    <!-- <el-form
       :model="ruleForm"
       status-icon
       :rules="rules"
       ref="ruleForm"
-      label-width="100px"
+      label-width="65px"
       class="demo-ruleForm"
     >
       <el-form-item label="用户名" prop="username">
@@ -29,66 +29,102 @@
         <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
         <el-button @click="resetForm('ruleForm')">重置</el-button>
       </el-form-item>
-    </el-form>
+    </el-form>-->
+    <div class="login">
+      <van-form @submit="onSubmit">
+        <van-field
+          v-model="username"
+          name="用户名"
+          label="用户名"
+          placeholder="用户名"
+          :rules="[{ required: true, message: '请填写用户名' }]"
+        />
+        <van-field
+          v-model="password"
+          type="password"
+          name="密码"
+          label="密码"
+          placeholder="密码"
+          :rules="[{ required: true, message: '请填写密码' }]"
+        />
+        <div style="margin: 16px;">
+          <van-button round block type="info" native-type="submit">提交</van-button>
+        </div>
+      </van-form>
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   data() {
-      var validateUser = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入用户名'));
-        }else if(value.length<6){
-          callback(new Error('用户名不能少于六位数'));
-        } else{
-          callback();
-        }
-      };
-      var validatePass = (rule, value, callback) => {
-        if (value === '') {
-          callback(new Error('请输入密码'));
-        }else if(value.length<6){
-          callback(new Error('密码不能少于六位数'));
-        } else {
-          // if (this.ruleForm.pass !== '') {
-          //   this.$refs.ruleForm.validateField('pass');
-          // }
-          callback();
-        }
-      };
-      return {
-        ruleForm: {
-          username: '',
-          pass: ''
-        },
-        rules: {
-          username: [
-            { validator: validateUser, trigger: 'blur' }
-          ],
-          pass: [
-            { validator: validatePass, trigger: 'blur' }
-          ]
-        }
-      };
+    //     var validateUser = (rule, value, callback) => {
+    //       if (value === '') {
+    //         callback(new Error('请输入用户名'));
+    //       }else if(value.length<6){
+    //         callback(new Error('用户名不能少于六位数'));
+    //       } else{
+    //         callback();
+    //       }
+    //     };
+    //     var validatePass = (rule, value, callback) => {
+    //       if (value === '') {
+    //         callback(new Error('请输入密码'));
+    //       }else if(value.length<6){
+    //         callback(new Error('密码不能少于六位数'));
+    //       } else {
+    //         // if (this.ruleForm.pass !== '') {
+    //         //   this.$refs.ruleForm.validateField('pass');
+    //         // }
+    //         callback();
+    //       }
+    //     };
+    //     return {
+    //       ruleForm: {
+    //         username: '',
+    //         pass: ''
+    //       },
+    //       rules: {
+    //         username: [
+    //           { validator: validateUser, trigger: 'blur' }
+    //         ],
+    //         pass: [
+    //           { validator: validatePass, trigger: 'blur' }
+    //         ]
+    //       }
+    //     };
+    return {
+      username: "",
+      password: "",
+    };
   },
   methods: {
-    submitForm(formName) {
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            alert('submit!');
-            this.$router.push("/home");
-          } else {
-            console.log('error submit!!');
-            return false;
-          }
-        });
-      },
-      resetForm(formName) {
-        this.$refs[formName].resetFields();
+    // submitForm(formName) {
+    //     this.$refs[formName].validate((valid) => {
+    //       if (valid) {
+    //         alert('submit!');
+    //         this.$router.push("/home");
+    //       } else {
+    //         console.log('error submit!!');
+    //         return false;
+    //       }
+    //     });
+    //   },
+    onSubmit(values) {
+      if (values) {
+        console.log("submit", values);
+        alert("submit!");
+        this.$router.push("/home");
+      } else {
+        console.log("error submit!!");
+        return false;
       }
-    }
-    }
+    },
+    resetForm(formName) {
+      this.$refs[formName].resetFields();
+    },
+  },
+};
 </script>
 <style>
 @media screen and (min-width: 0px) {
@@ -98,15 +134,15 @@ export default {
 }
 </style>
 <style scoped lang='less'>
-.el-form{
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content:center;
-padding: 10px;
-.el-form-item__label{
-  width: 30px;
-}
+.login{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  .el-form-item__label {
+    width: 30px;
+  }
 }
 /* 菜单 */
 .menu {
@@ -117,8 +153,8 @@ padding: 10px;
   margin-right: 20px;
 }
 .el-dropdown-selfdefine {
-  width: 60px;
-  height: 30px;
+  width: 70px;
+  height: 40px;
   padding: 0;
   line-height: 30px;
   text-align: center;
