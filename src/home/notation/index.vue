@@ -1,30 +1,16 @@
 <template>
   <div class="p">
-      <!-- <van-field name="radio" label="单选框">
-  <template #input>
-    <van-radio-group v-model="radio" direction="horizontal">
-      <van-radio name="1">同意</van-radio>
-      <van-radio name="2">反对</van-radio>
-    </van-radio-group>
-  </template>
-    </van-field>
-    <el-select v-model="value" placeholder="请选择">
-    <el-option
-      v-for="item in cities"
-      :key="item.value"
-      :label="item.label"
-      :value="item.value">
-      <span style="float: left">{{ item.label }}</span>
-      <span style="float: right; color: #8492a6; font-size: 13px">{{ item.value }}</span>
-    </el-option>
-  </el-select> -->
-  <div class="header">
+ <div class="header">
     画板批注
   </div>
   <div class="main">
-    ddddd
+    <div class="pizhu">
+      aaaaaaa
+    </div>
   </div>
-    <van-pagination v-model="currentPage" :page-count="12" mode="simple" />
+  <div class="footer">
+    <van-pagination v-model="currentPage" :page-count="12" mode="simple"/>
+    </div>
   </div>
 </template>
 
@@ -51,9 +37,36 @@ export default {
 }
 </script>
 
-<style scoped>
+<style lang='less' scoped>
+
+.p{
+  height:100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  .header{
+    padding-left: 10px;
+    background-color: #efefef;
+    font-size: 18px;
+  }
+  .main{
+    padding-left: 15px;
+    height: 100%;
+    font-size: 16px;
+    margin-bottom: 40px;
+  }
+  .footer{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 35px;
+  }
+}
+
+
 .van-field{
   padding: 0;
   font-size: 12px;
 }
+
 </style>

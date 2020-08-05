@@ -33,10 +33,12 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      <el-main style="background-color:#e8e9ec;">
+      <el-main>
+        <div style="overflow-y:auto;height:100%;">
         <router-view></router-view>
+        </div>
       </el-main>
-    </el-container>
+      </el-container>
   </div>
 </template>
 <script src="./node_modules/amfe-flexible/index.js"></script>
@@ -83,8 +85,6 @@ export default {
       padding:12px;
     }
   }
-
-
   .el-menu {
     border-right: solid 0px #e6e6e6;
     list-style: none;
@@ -92,7 +92,6 @@ export default {
     right: 0;
     margin: 0;
     padding-left: 0;
-    background-color: #fff;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     min-height: 400px;
@@ -129,10 +128,15 @@ export default {
   .el-aside {
     height: 100vh;
     height: calc(100vh - 54px);
-  }
+    background-color: #ca021f;
 
+  }
+  .el-menu-item{
+    color: white;
+  }
   .el-main {
     padding: 0;
+    overflow: auto;
   }
   .el-container {
     display: flex;
@@ -143,6 +147,8 @@ export default {
     align-items: center;
     justify-content: center;
     font-size: 16px;
+    background-color: #c9031c;
+    color: #fff;
   }
   .el-menu {
     border-right: solid 0px #e6e6e6;
@@ -152,6 +158,10 @@ export default {
     margin: 0;
     padding-left: 0;
     background-color: #fff;
+    background-color: #ca021f;
+  }
+.el-menu-item i{
+    color: #fff;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     min-height: 100%;

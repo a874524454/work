@@ -8,6 +8,7 @@ import notation from '../src/home/notation/index.vue'
 import vote from '../src/home/vote/index.vue'
 import info1 from '../src/home/info/info1/info.vue'
 import info2 from '../src/home/info/info2/info2.vue'
+import index1 from '../src/home/vote/com/index1.vue'
 
 Vue.use(VueRouter)
 const routes =[
@@ -25,15 +26,15 @@ const routes =[
       children: [
         {
           path: '/',
-          redirect: '/home/index'
+          redirect: 'index'
         },
         {
           path: 'index',
           component: index,
           children:[
             {
-              path: '/index',
-              redirect: '/home/information/info1'
+              path: '/home/index',
+              redirect: 'info1'
             },
             {
               path: 'info1',
@@ -55,7 +56,12 @@ const routes =[
         },
         {
           path: 'vote',
-          component: vote 
+          component: vote
+          
+        },
+        {
+          path: 'index1',
+          component:index1
         }
       ]
     }

@@ -1,5 +1,9 @@
 <template>
-  <div>
+  <div class="infomation">
+    <div class="main">
+    <div class="header">
+      <p>没有进行中的命题</p>
+    </div>
     <table :model="tableData" id="printTest" v-for="(item,index) in tableData" :key="index">
       <tr>
         <td @click="changeContent(index)" class="title" rowspan="5">></td>
@@ -21,66 +25,116 @@
         <td>{{item.related}}</td>
       </tr>
       <tr v-show="item.show" class="tu">
-        <td colspan="3"><img v-image-preview src="../../assets/img.png" alt=""><span>02.jpg</span></td>
+        <td colspan="3">
+          <img v-image-preview src="../../assets/img.png" alt />
+          <span>02.jpg</span>
+        </td>
       </tr>
+      <!-- <tr v-show="item.show" class="tu">
+        <td colspan="3">
+         <iframe src="../../assets/2020_PDF.pdf"></iframe>
+        </td>
+      </tr> -->
     </table>
+    </div>
   </div>
 </template>
-
 <script>
+// import pdf from 'vue-pdf'
 export default {
+  // components: {
+  //   pdf
+  // },
   data() {
     return {
-      show:false,
+      fileType: 'pdf',
+      show: false,
       currentArr: [],
       currentIndex: 0,
       styleObject: {},
       s_showByRow: true,
       tableData: [
-        {id:0,title: "议题一",time: "19.02-19.04",create: "国务院",related: "国务院",show:false},
-        {id:1,title: "议题二",time: "19.04-19.06",create: "国务院1",related: "国务院1",show:false},
-        {id:2,title: "议题三",time: "19.06-19.08",create: "国务院2",related: "国务院2",show:false}
+        {
+          id: 0,
+          title: "议题一",
+          time: "19.02-19.04",
+          create: "国务院",
+          related: "国务院",
+          show: false,
+        },
+        {
+          id: 1,
+          title: "议题二",
+          time: "19.04-19.06",
+          create: "国务院1",
+          related: "国务院1",
+          show: false,
+        },
+        {
+          id: 2,
+          title: "议题三",
+          time: "19.06-19.08",
+          create: "国务院2",
+          related: "国务院2",
+          show: false,
+        },
       ],
     };
   },
   methods: {
-     changeContent(index){                       //通过index拿到当前值
-        this.tableData[index].show=!this.tableData[index].show;
-    }
-  }
+    changeContent(index) {
+      //通过index拿到当前值
+      this.tableData[index].show = !this.tableData[index].show;
+    },
+  },
 };
 </script>
-<style>
-.active{
-	display: none;
+<style lang='less'>
+.infomation{
+  height: 100%;
+  overflow:auto;
+  p{
+    font-size: 14px;
+  }
+  .main{
+    height: 300px;
+  }
+  .header{
+    display: flex;
+    justify-content:space-between;
 }
-table{
-  font-size: 12px;
 }
-.title{
+.active {
+  display: none;
+}
+table {
+  font-size: 14px;
+}
+
+.title {
   vertical-align: top;
 }
-.tu img{
+.tu img {
   width: 50px;
   height: 50px;
-  vertical-align:middle;
+  vertical-align: middle;
 }
-.tu span{
+.tu span {
   margin-left: 10px;
 }
-.el-main{
-  background-color: #fff;
-}
-table,tr,td{
+
+table,
+tr,
+td {
   border: 1px solid #000;
   border-collapse: collapse;
 }
-table tr td{
+table tr td {
   width: 200px;
- padding:5px 10px;
+  padding: 5px 10px;
 }
-table tr td:nth-child(2){
-width: 1000px;
+table tr td:nth-child(2) {
+  width: 1000px;
 }
 .el-collapse-item__content {
   padding-bottom: 0;

@@ -40,7 +40,6 @@ export default {
   }
   .el-container{
     width: 100%;
-    height: 50px;
   }
   .el-container li{
     height: 50px;
