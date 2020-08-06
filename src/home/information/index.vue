@@ -1,53 +1,52 @@
 <template>
   <div class="infomation">
     <div class="main">
-    <div class="header">
-      <p>没有进行中的命题</p>
-    </div>
-    <table :model="tableData" id="printTest" v-for="(item,index) in tableData" :key="index">
-      <tr>
-        <td @click="changeContent(index)" class="title" rowspan="5">></td>
-      </tr>
-      <tr>
-        <td>议题</td>
-        <td>{{item.title}}</td>
-      </tr>
-      <tr v-show="item.show">
-        <td>时间</td>
-        <td>{{item.time}}</td>
-      </tr>
-      <tr v-show="item.show">
-        <td>提出部门</td>
-        <td>{{item.create}}</td>
-      </tr>
-      <tr v-show="item.show">
-        <td>相关部门</td>
-        <td>{{item.related}}</td>
-      </tr>
-      <tr v-show="item.show" class="tu">
-        <td colspan="3">
-          <img v-image-preview src="../../assets/img.png" alt />
-          <span>02.jpg</span>
-        </td>
-      </tr>
-      <!-- <tr v-show="item.show" class="tu">
-        <td colspan="3">
-         <iframe src="../../assets/2020_PDF.pdf"></iframe>
-        </td>
-      </tr> -->
-    </table>
+      <div class="header">
+        <p>没有进行中的命题</p>
+      </div>
+      <table :model="tableData" id="printTest" v-for="(item,index) in tableData" :key="index">
+        <tr>
+          <td @click="changeContent(index)" class="title" rowspan="5">></td>
+        </tr>
+        <tr>
+          <td>议题</td>
+          <td>{{item.title}}</td>
+        </tr>
+        <tr v-show="item.show">
+          <td>时间</td>
+          <td>{{item.time}}</td>
+        </tr>
+        <tr v-show="item.show">
+          <td>提出部门</td>
+          <td>{{item.create}}</td>
+        </tr>
+        <tr v-show="item.show">
+          <td>相关部门</td>
+          <td>{{item.related}}</td>
+        </tr>
+        <tr v-show="item.show" class="tu">
+          <td colspan="3">
+            <img v-image-preview src="../../assets/img.png" alt />
+            <span>02.jpg</span>
+          </td>
+        </tr>
+        <tr v-show="item.show" class="tu">
+          <td colspan="3">
+            <!-- <iframe src="../../assets/2020_PDF.pdf"></iframe> -->
+          </td>
+        </tr>
+      </table>
     </div>
   </div>
 </template>
 <script>
-// import pdf from 'vue-pdf'
+// import pdf from "vue-pdf";
 export default {
   // components: {
-  //   pdf
+  //   pdf,
   // },
   data() {
     return {
-      fileType: 'pdf',
       show: false,
       currentArr: [],
       currentIndex: 0,
@@ -55,7 +54,6 @@ export default {
       s_showByRow: true,
       tableData: [
         {
-          id: 0,
           title: "议题一",
           time: "19.02-19.04",
           create: "国务院",
@@ -63,7 +61,6 @@ export default {
           show: false,
         },
         {
-          id: 1,
           title: "议题二",
           time: "19.04-19.06",
           create: "国务院1",
@@ -71,7 +68,34 @@ export default {
           show: false,
         },
         {
-          id: 2,
+          title: "议题三",
+          time: "19.06-19.08",
+          create: "国务院2",
+          related: "国务院2",
+          show: false,
+        },
+        {
+          title: "议题三",
+          time: "19.06-19.08",
+          create: "国务院2",
+          related: "国务院2",
+          show: false,
+        },
+        {
+          title: "议题三",
+          time: "19.06-19.08",
+          create: "国务院2",
+          related: "国务院2",
+          show: false,
+        },
+        {
+          title: "议题三",
+          time: "19.06-19.08",
+          create: "国务院2",
+          related: "国务院2",
+          show: false,
+        },
+        {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
@@ -90,19 +114,16 @@ export default {
 };
 </script>
 <style lang='less'>
-.infomation{
+.infomation {
   height: 100%;
-  overflow:auto;
-  p{
+  overflow: auto;
+  p {
     font-size: 14px;
   }
-  .main{
-    height: 300px;
-  }
-  .header{
+  .header {
     display: flex;
-    justify-content:space-between;
-}
+    justify-content: space-between;
+  }
 }
 .active {
   display: none;

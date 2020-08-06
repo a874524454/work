@@ -22,9 +22,9 @@ export default {
   height: 100%;
   background-color: #e6ebee;
   .header{
-    padding-left: 10px;
-    padding-bottom: 10px;
+    padding: 10px;
     border-bottom: 1px solid #000;
+    font-size: 14px;
   }
   .van-cell{
     background-color: #e6ebee;

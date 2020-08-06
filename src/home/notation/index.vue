@@ -4,10 +4,12 @@
     画板批注
   </div>
   <div class="main">
-    <div class="pizhu">
-      aaaaaaa
+    <div class="pizhu" v-for="(item,index) in 4" :key="index">
+      <img v-image-preview src="../../assets/img.png" alt />
+      <span>02.jpg</span>
     </div>
   </div>
+  
   <div class="footer">
     <van-pagination v-model="currentPage" :page-count="12" mode="simple"/>
     </div>
@@ -19,19 +21,7 @@ export default {
   data(){
     return{
       currentPage:1,
-      notation:[],
-       radio: '1',
-       cities: [{
-          value: 'agree',
-          label: '赞同'
-        }, {
-          value: 'abstention',
-          label: '弃权'
-        }, {
-          value: 'against',
-          label: '反对'
-        }],
-        value: ''
+      numPages: 1,
     }
   }
 }
@@ -50,7 +40,6 @@ export default {
     font-size: 18px;
   }
   .main{
-    padding-left: 15px;
     height: 100%;
     font-size: 16px;
     margin-bottom: 40px;
@@ -61,6 +50,18 @@ export default {
     width: 100%;
     height: 35px;
   }
+  .pizhu{
+    padding: 10px;
+    border-bottom: 1px solid black;
+    img{
+      width: 50px;
+      height: 50px;
+      vertical-align: middle;
+    }
+    span{
+      margin-left: 10px;
+    }
+  }
 }
 
 
@@ -68,5 +69,4 @@ export default {
   padding: 0;
   font-size: 12px;
 }
-
 </style>
