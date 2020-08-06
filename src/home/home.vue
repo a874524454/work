@@ -6,7 +6,7 @@
           <span>主持者：xxx</span>
         </div>
         <el-menu
-          :default-active="activeIndex"
+          default-active="1"
           class="el-menu-vertical-demo"
           router
           menu-trigger="click"
@@ -36,7 +36,7 @@
       </el-header>
       <el-container style="height: 100%;">
         <!-- <el-aside width="auto" class="dis"> -->
-        <el-menu :default-active="activeIndex" router :collapse="isCollapse" class="dis">
+        <el-menu default-active="1" router :collapse="isCollapse" class="dis" active-text-color="#ffd04b">
           <el-menu-item index="/home/index">
             <i class="el-icon-document"></i>
             <span slot="title">会议信息</span>
@@ -56,9 +56,9 @@
         </el-menu>
         <!-- </el-aside> -->
         <el-main>
-          <div class="abc">
+          <!-- <div class="abc"> -->
             <router-view></router-view>
-          </div>
+          <!-- </div> -->
         </el-main>
       </el-container>
     </div>
@@ -71,7 +71,6 @@ export default {
       active: 0,
       show: false,
       isCollapse: true,
-      activeIndex: "1",
     };
   },
   created() {
@@ -142,8 +141,8 @@ export default {
   }
   .el-main {
     padding: 0;
-    height: calc(100vh - 1.44rem);
-    overflow: auto;
+    // height: calc(100vh - 1.44rem);
+    // overflow: auto;
   }
   .home {
     .zi {
@@ -197,7 +196,6 @@ export default {
     width: 150px !important;
   }
 }
-
 .home {
   position: relative;
   height: 100%;
@@ -218,8 +216,9 @@ export default {
   }
   .el-main {
     padding: 0;
-    overflow: auto;
+    // overflow: auto;
     background-color: #fff;
+    overflow: hidden;
   }
   .el-container {
     display: flex;

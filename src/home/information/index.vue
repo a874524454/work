@@ -151,7 +151,7 @@ td {
   border-collapse: collapse;
 }
 table tr td {
-  width: 200px;
+  // width: 200px;
   padding: 5px 10px;
 }
 table tr td:nth-child(2) {

@@ -35,7 +35,7 @@ export default {
 
 <style lang='less'>
 .info{
-  height: 100%;
+  // height: 100%;
   .el-main{
     height: 100%;
     padding: 0;

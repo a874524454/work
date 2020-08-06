@@ -4,9 +4,11 @@
     画板批注
   </div>
   <div class="main">
-    <div class="pizhu" v-for="(item,index) in 4" :key="index">
+    <!-- <div class="abc"> -->
+    <div class="pizhu" v-for="(item,index) in 12" :key="index">
       <img v-image-preview src="../../assets/img.png" alt />
       <span>02.jpg</span>
+    <!-- </div> -->
     </div>
   </div>
   
@@ -30,10 +32,15 @@ export default {
 <style lang='less' scoped>
 
 .p{
-  height:100%;
   display: flex;
   flex-direction: column;
   position: relative;
+  height: 100%;
+  .abc {
+    overflow-y: auto;
+    height: calc(100vh - 1.44rem);
+    margin-bottom: 45.5px;
+  }
   .header{
     padding-left: 10px;
     background-color: #efefef;
@@ -42,7 +49,7 @@ export default {
   .main{
     height: 100%;
     font-size: 16px;
-    margin-bottom: 40px;
+    margin-bottom: 45.5px;
   }
   .footer{
     position: absolute;
