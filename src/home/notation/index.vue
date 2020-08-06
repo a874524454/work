@@ -1,5 +1,5 @@
 <template>
-  <div class="p">
+<div class="p">
  <div class="header">
     画板批注
   </div>
@@ -13,8 +13,8 @@
   </div>
   
   <div class="footer">
-    <van-pagination v-model="currentPage" :page-count="12" mode="simple"/>
-    </div>
+    <van-pagination v-model="currentPage" :page-count="20" mode="simple"/>
+  </div>
   </div>
 </template>
 
@@ -28,18 +28,24 @@ export default {
   }
 }
 </script>
-
+<style lang="less">
+@media (min-width: 1023px) {
+  .p{
+  height:calc(100vh-1.44rem);
+  // min-height:1140px;
+  min-height:100%;
+  }
+}
+</style>
 <style lang='less' scoped>
-
 .p{
   display: flex;
   flex-direction: column;
   position: relative;
-  height: 100%;
+  height:calc(100vh-1.44rem);
   .abc {
-    overflow-y: auto;
-    height: calc(100vh - 1.44rem);
-    margin-bottom: 45.5px;
+    overflow: auto;
+    height:700px
   }
   .header{
     padding-left: 10px;

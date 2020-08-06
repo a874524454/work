@@ -129,7 +129,6 @@ export default {
   .el-menu-item .el-tooltip {
     padding-left: 12px !important;
   }
-  
 }
 @media (min-width: 767px) {
   .el-menu-vertical-demo {
@@ -207,7 +206,7 @@ export default {
     background-image: url("../assets/timg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
-    // background-position: top right;
+    background-position: top left;
   .el-menu-item {
     color: white;
     span {
@@ -218,7 +217,8 @@ export default {
     padding: 0;
     // overflow: auto;
     background-color: #fff;
-    overflow: hidden;
+    // overflow: hidden;
+    height:calc(100vh - 1.44rem);
   }
   .el-container {
     display: flex;
