@@ -5,7 +5,7 @@
   </div>
   <div class="main">
     <!-- <div class="abc"> -->
-    <div class="pizhu" v-for="(item,index) in 12" :key="index">
+    <div class="pizhu" v-for="(item,index) in 12" :key="index" @click="log(index)">
       <img v-image-preview src="../../assets/img.png" alt />
       <span>02.jpg</span>
     <!-- </div> -->
@@ -25,6 +25,11 @@ export default {
       currentPage:1,
       numPages: 1,
     }
+  },
+  methods: {
+    log(i){
+      console.log(i);
+    },
   }
 }
 </script>

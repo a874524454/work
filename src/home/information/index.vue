@@ -109,9 +109,8 @@ export default {
   },
   methods: {
     changeContent(index) {
-      //通过index拿到当前值
       this.tableData[index].show = !this.tableData[index].show;
-    },
+    }
   },
 };
 </script>

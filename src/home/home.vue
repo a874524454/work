@@ -11,7 +11,6 @@
           router
           menu-trigger="click"
           mode="horizontal"
-
         >
           <el-submenu index="1">
             <template slot="title">菜单</template>
