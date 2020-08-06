@@ -70,16 +70,16 @@ export default {
     return {
       active: 0,
       show: false,
-      isCollapse: true,
+      isCollapse: false,
     };
   },
-  created() {
-    this.$nextTick(() => {
-      if (document.body.clientWidth > 414) {
-        this.isCollapse = false;
-      }
-    });
-  },
+  // created() {
+  //   this.$nextTick(() => {
+  //     if (document.body.clientWidth > 414) {
+  //       this.isCollapse = false;
+  //     }
+  //   });
+  // },
   methods: {},
 };
 </script>
@@ -232,6 +232,7 @@ export default {
     color: #fff;
     overflow: hidden;
     position: relative;
+    padding: 0 !important;
     // background-image: url("../assets/timg.jpg");
     // background-repeat: no-repeat;
     // background-size: cover;

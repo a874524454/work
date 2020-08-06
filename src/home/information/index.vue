@@ -33,6 +33,7 @@
         <tr v-show="item.show" class="tu">
           <td colspan="3">
             <!-- <iframe src="../../assets/2020_PDF.pdf"></iframe> -->
+            <pdf :src='src'></pdf>
           </td>
         </tr>
       </table>
@@ -40,11 +41,11 @@
   </div>
 </template>
 <script>
-// import pdf from "vue-pdf";
+import pdf from "vue-pdf";
 export default {
-  // components: {
-  //   pdf,
-  // },
+  components: {
+    pdf,
+  },
   data() {
     return {
       show: false,
@@ -52,6 +53,7 @@ export default {
       currentIndex: 0,
       styleObject: {},
       s_showByRow: true,
+      src:'',
       tableData: [
         {
           title: "议题一",
