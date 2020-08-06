@@ -2,7 +2,7 @@
   <div class="info">
     <el-container>
       <el-aside width="100%">
-        <el-menu default-active="2" class="el-menu-vertical-demo" router mode="horizontal">
+        <el-menu :default-active="active" class="el-menu-demo" router mode="horizontal">
           <el-menu-item index="/home/index/info1">
             <i class="el-icon-document"></i>
             <span slot="title">基本信息</span>
@@ -13,7 +13,6 @@
           </el-menu-item>
         </el-menu>
       </el-aside>
-      
     </el-container>
     <el-main>
         <router-view></router-view>
@@ -23,7 +22,14 @@
 
 <script>
 export default {
-
+  data(){
+    return{
+      active:'0'
+    }
+  },
+  methods: {
+    
+  }
 }
 </script>
 

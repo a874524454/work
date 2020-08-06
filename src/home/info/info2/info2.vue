@@ -34,14 +34,31 @@
  export default {
       data() {
         return {
-          tableData: [{
+          tableData: [
+          {
             seat: '1',
             name: '王小虎',
             department: '国务院',
             title:'常委',
             permissions:'会议主持',
             time:'2020-8-4'
-          }
+          },
+          {
+            seat: '2',
+            name: '王小二',
+            department: '国务院',
+            title:'常委',
+            permissions:'会议主持',
+            time:'2020-8-4'
+          },
+          {
+            seat: '3',
+            name: '张三',
+            department: '国务院',
+            title:'常委',
+            permissions:'会议主持',
+            time:'2020-8-4'
+          },
         ]
         }
       }
