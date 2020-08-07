@@ -39,8 +39,8 @@ window.vm=new Vue({
   i18n,
   router,
   render: h => h(App),
-}).$mount('#app')
-
+})
+//挂载两次，生命钩子函数会执行两次，去掉上一个挂载可以解决，不知道是否有bug
 new Vue({
   i18n,
   router,

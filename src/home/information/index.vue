@@ -56,9 +56,8 @@ export default {
     that=this
     console.log(that);
   },
-  mounted() {
-    console.log(window);
-    console.log(window.vm);
+  created() {
+    console.log(that);
   },
   data() {
     return {
