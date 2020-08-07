@@ -1,9 +1,9 @@
 <template>
   <div class="vote">
         <div class="header">投票列表</div>
-          <van-cell icon="bar-chart-o" title="实施食品安全战略" is-link to="index1" />
-          <van-cell icon="bar-chart-o" title="扩大中等收入群体" is-link to="index1" />
-          <van-cell icon="bar-chart-o" title="确保2020年贫困人口" is-link to="index1" />
+          <van-cell icon="bar-chart-o" :title="this.$t('localization.vote1')" is-link to="index1" />
+          <van-cell icon="bar-chart-o" :title="this.$t('localization.vote2')" is-link to="index1" />
+          <van-cell icon="bar-chart-o" :title="this.$t('localization.vote3')" is-link to="index1" />
   </div>
 </template>
 

@@ -2,25 +2,29 @@
   <div class="infomation">
     <div class="main">
       <div class="header">
-        <p>没有进行中的命题</p>
+        <p>{{this.$t("localization.dd")}}</p>
       </div>
       <table :model="tableData" id="printTest" v-for="(item,index) in tableData" :key="index">
         <tr>
           <td @click="changeContent(index)" class="title" rowspan="5">></td>
         </tr>
-        <tr>
+        <tr @click="changeContent(index)">
+          <!-- <td>{{this.$t("localization.issue")}}</td> -->
           <td>议题</td>
           <td>{{item.title}}</td>
         </tr>
         <tr v-show="item.show">
+          <!-- <td>{{this.$t("localization.time")}}</td> -->
           <td>时间</td>
           <td>{{item.time}}</td>
         </tr>
         <tr v-show="item.show">
+          <!-- <td>{{this.$t("localization.Pdepartment")}}</td> -->
           <td>提出部门</td>
           <td>{{item.create}}</td>
         </tr>
         <tr v-show="item.show">
+          <!-- <td>{{this.$t("localization.rdepartments")}}</td> -->
           <td>相关部门</td>
           <td>{{item.related}}</td>
         </tr>
@@ -60,49 +64,49 @@ export default {
           time: "19.02-19.04",
           create: "国务院",
           related: "国务院",
-          show: false,
+          show: true,
         },
         {
           title: "议题二",
           time: "19.04-19.06",
           create: "国务院1",
           related: "国务院1",
-          show: false,
+          show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
           related: "国务院2",
-          show: false,
+          show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
           related: "国务院2",
-          show: false,
+          show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
           related: "国务院2",
-          show: false,
+          show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
           related: "国务院2",
-          show: false,
+          show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
           create: "国务院2",
           related: "国务院2",
-          show: false,
+          show: true,
         },
       ],
     };

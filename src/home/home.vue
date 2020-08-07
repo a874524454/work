@@ -1,66 +1,81 @@
 <template>
   <div class="home">
-      <el-header>
-        <div class="zi">
-          <span>当前会议：手动会议</span>
-          <span>主持者：xxx</span>
-        </div>
-        <el-menu
-          default-active="1"
-          class="el-menu-vertical-demo"
-          router
-          menu-trigger="click"
-          mode="horizontal"
-        >
-          <el-submenu index="1">
-            <template slot="title">菜单</template>
-            <el-menu-item index="/home/index">
-              <i class="el-icon-document"></i>
-              <span slot="title">会议信息</span>
-            </el-menu-item>
-            <el-menu-item index="/home/information">
-              <i class="el-icon-folder-opened"></i>
-              <span slot="title">议题资料</span>
-            </el-menu-item>
-            <el-menu-item index="/home/notation">
-              <i class="el-icon-edit-outline"></i>
-              <span slot="title">画笔批注</span>
-            </el-menu-item>
-            <el-menu-item index="/home/vote">
-              <i class="el-icon-finished"></i>
-              <span slot="title">投票表决</span>
-            </el-menu-item>
-          </el-submenu>
-        </el-menu>
-      </el-header>
-      <el-container style="height: 100%;">
-        <!-- <el-aside width="auto" class="dis"> -->
-        <el-menu default-active="1" router :collapse="isCollapse" class="dis" active-text-color="#ffd04b">
+    <el-header>
+      
+      <div class="zi">
+        <span>{{this.$t("localization.meettype")}}：{{this.$t("localization.meet")}}</span>
+        <span>{{this.$t("localization.presider")}}：xxx</span>
+      </div>
+      <el-select v-model="value" @change="switchLanguage(value)" class="el-select">
+        <el-option
+          v-for="item in language"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        ></el-option>
+      </el-select>
+      <el-menu
+        default-active="1"
+        class="el-menu-vertical-demo"
+        router
+        menu-trigger="click"
+        mode="horizontal"
+      >
+        <el-submenu index="1">
+          <template slot="title">{{this.$t("localization.menu")}}</template>
           <el-menu-item index="/home/index">
             <i class="el-icon-document"></i>
-            <span slot="title">会议信息</span>
+            <span slot="title">{{this.$t("localization.information")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/information">
             <i class="el-icon-folder-opened"></i>
-            <span slot="title">议题资料</span>
+            <span slot="title">{{this.$t("localization.Isinformation")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/notation">
             <i class="el-icon-edit-outline"></i>
-            <span slot="title">画笔批注</span>
+            <span slot="title">{{this.$t("localization.notation")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/vote">
             <i class="el-icon-finished"></i>
-            <span slot="title">投票表决</span>
+            <span slot="title">{{this.$t("localization.vote")}}</span>
           </el-menu-item>
-        </el-menu>
-        <!-- </el-aside> -->
-        <el-main>
-          <!-- <div class="abc"> -->
-            <router-view></router-view>
-          <!-- </div> -->
-        </el-main>
-      </el-container>
-    </div>
+        </el-submenu>
+      </el-menu>
+    </el-header>
+    <el-container style="height: 100%;">
+      <!-- <el-aside width="auto" class="dis"> -->
+      <el-menu
+        default-active="1"
+        router
+        :collapse="isCollapse"
+        class="dis"
+        active-text-color="#ffd04b"
+      >
+        <el-menu-item index="/home/index">
+          <i class="el-icon-document"></i>
+          <span slot="title">{{this.$t("localization.information")}}</span>
+        </el-menu-item>
+        <el-menu-item index="/home/information">
+          <i class="el-icon-folder-opened"></i>
+          <span slot="title">{{this.$t("localization.Isinformation")}}</span>
+        </el-menu-item>
+        <el-menu-item index="/home/notation">
+          <i class="el-icon-edit-outline"></i>
+          <span slot="title">{{this.$t("localization.notation")}}</span>
+        </el-menu-item>
+        <el-menu-item index="/home/vote">
+          <i class="el-icon-finished"></i>
+          <span slot="title">{{this.$t("localization.vote")}}</span>
+        </el-menu-item>
+      </el-menu>
+      <!-- </el-aside> -->
+      <el-main>
+        <!-- <div class="abc"> -->
+        <router-view></router-view>
+        <!-- </div> -->
+      </el-main>
+    </el-container>
+  </div>
 </template>
 <script src="./node_modules/amfe-flexible/index.js"></script>
 <script>
@@ -70,6 +85,17 @@ export default {
       active: 0,
       show: false,
       isCollapse: false,
+      value: this.$i18n.locale,
+       language: [
+            {
+            value: "en-US",
+            label: "English"
+            },
+            {
+            value: "zh-CN",
+            label: "中文简体"
+            }
+      ]
     };
   },
   // created() {
@@ -79,7 +105,19 @@ export default {
   //     }
   //   });
   // },
-  methods: {},
+  methods: {
+        switchLanguage(value) {
+        if (value == "zh-CN") {
+            this.$i18n.locale = "zh-CN";
+        } else if (value == "en-US") {
+            this.$i18n.locale = "en-US";
+        }
+        //在选择了显示的语言后，将配置保存到Cookie中
+        // this.$cookie.set("DefaultLanguage",value,{expires: "30m"});                     
+        this.$cookies.set("DefaultLanguage",value);
+        this.$cookies.get("DefaultLanguage");
+        }
+    }
 };
 </script>
 <style lang='less'>
@@ -96,7 +134,7 @@ export default {
   }
   .el-submenu {
     box-sizing: border-box;
-    width: 50px;
+    width: 60px;
     overflow: hidden;
     position: absolute;
     right: 0;
@@ -118,8 +156,8 @@ export default {
     overflow-y: auto;
     height: calc(100vh - 1.44rem);
   }
-  .home{
-    .el-menu{
+  .home {
+    .el-menu {
       height: 100%;
     }
   }
@@ -149,7 +187,7 @@ export default {
         margin-left: 10px;
       }
     }
-    .el-menu{
+    .el-menu {
       height: calc(100vh - 54px);
     }
   }
@@ -197,15 +235,13 @@ export default {
 .home {
   position: relative;
   height: 100%;
-  // .el-aside {
-  //   height: 100vh;
-  //   height: calc(100vh - 54px);
-
-  // }
-    background-image: url("../assets/timg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top left;
+  background-image: url("../assets/timg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: top left;
+  .el-select{
+    width: 110px;
+  }
   .el-menu-item {
     color: white;
     span {
@@ -217,7 +253,7 @@ export default {
     // overflow: auto;
     background-color: #fff;
     // overflow: hidden;
-    height:calc(100vh - 1.44rem);
+    height: calc(100vh - 1.44rem);
   }
   .el-container {
     display: flex;
@@ -243,7 +279,7 @@ export default {
     // background-repeat: no-repeat;
     // background-size:cover;
     // background-position:top right;
-    background-color: rgba(192, 101, 101,0) !important;
+    background-color: rgba(192, 101, 101, 0) !important;
   }
   .el-menu-item i {
     color: #fff;

@@ -4,27 +4,27 @@
       :data="tableData">
       <el-table-column
         prop="seat"
-        label="座位">
+        :label="this.$t('localization.seat')">
       </el-table-column>
       <el-table-column
         prop="name"
-        label="姓名">
+        :label="this.$t('localization.name')">
       </el-table-column>
       <el-table-column
         prop="department"
-        label="部门">
+        :label="this.$t('localization.department')">
       </el-table-column>
       <el-table-column
         prop="title"
-        label="职称">
+        :label="this.$t('localization.title')">
       </el-table-column>
       <el-table-column
         prop="permissions"
-        label="会议权限">
+        :label="this.$t('localization.permissions')">
       </el-table-column>
       <el-table-column
         prop="time"
-        label="签到时间">
+        :label="this.$t('localization.stime')">
       </el-table-column>
     </el-table>
   </div>

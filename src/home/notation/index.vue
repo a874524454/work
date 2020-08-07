@@ -1,7 +1,7 @@
 <template>
 <div class="p">
  <div class="header">
-    画板批注
+    {{this.$t("localization.notation")}}
   </div>
   <div class="main">
     <!-- <div class="abc"> -->
@@ -50,7 +50,7 @@ export default {
   height:calc(100vh-1.44rem);
   .abc {
     overflow: auto;
-    height:700px
+    height:700px;
   }
   .header{
     padding-left: 10px;

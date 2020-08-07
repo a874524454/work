@@ -5,11 +5,11 @@
         <el-menu :default-active="active" class="el-menu-demo" router mode="horizontal">
           <el-menu-item index="/home/index/info1">
             <i class="el-icon-document"></i>
-            <span slot="title">基本信息</span>
+            <span slot="title">{{this.$t("localization.bainformation")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/index/info2">
             <i class="el-icon-folder-opened"></i>
-            <span slot="title">参会人员列表</span>
+            <span slot="title">{{this.$t("localization.attendees")}}</span>
           </el-menu-item>
         </el-menu>
       </el-aside>
