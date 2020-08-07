@@ -2,30 +2,31 @@
   <div class="infomation">
     <div class="main">
       <div class="header">
-        <p>{{this.$t("localization.dd")}}</p>
+        <!-- <p>{{this.$t("localization.dd")}}</p> -->
+        <p>{{vm.$t("localization.没有进行中的命题")}}</p>
       </div>
-      <table :model="tableData" id="printTest" v-for="(item,index) in tableData" :key="index">
-        <tr>
-          <td @click="changeContent(index)" class="title" rowspan="5">></td>
+      <table :model="tableData"  id="printTest" v-for="(item,index) in tableData" :key="index">
+        <tr @click="changeContent(index)">
+          <td class="title" rowspan="5">></td>
         </tr>
         <tr @click="changeContent(index)">
-          <!-- <td>{{this.$t("localization.issue")}}</td> -->
-          <td>议题</td>
+          <td>{{vm.$t("localization.议题")}}</td>
+          <!-- <td>议题</td> -->
           <td>{{item.title}}</td>
         </tr>
         <tr v-show="item.show">
-          <!-- <td>{{this.$t("localization.time")}}</td> -->
-          <td>时间</td>
+          <td>{{vm.$t("localization.时间")}}</td>
+          <!-- <td>时间</td> -->
           <td>{{item.time}}</td>
         </tr>
         <tr v-show="item.show">
-          <!-- <td>{{this.$t("localization.Pdepartment")}}</td> -->
-          <td>提出部门</td>
+          <td>{{vm.$t("localization.提出部门")}}</td>
+          <!-- <td>提出部门</td> -->
           <td>{{item.create}}</td>
         </tr>
         <tr v-show="item.show">
-          <!-- <td>{{this.$t("localization.rdepartments")}}</td> -->
-          <td>相关部门</td>
+          <td>{{vm.$t("localization.相关部门")}}</td>
+          <!-- <td>相关部门</td> -->
           <td>{{item.related}}</td>
         </tr>
         <tr v-show="item.show" class="tu">
@@ -46,12 +47,22 @@
 </template>
 <script>
 import pdf from "vue-pdf";
+var that;
 export default {
   components: {
     pdf,
   },
+  beforeCreate() {
+    that=this
+    console.log(that);
+  },
+  mounted() {
+    console.log(window);
+    console.log(window.vm);
+  },
   data() {
     return {
+      vm: window.vm,
       show: false,
       currentArr: [],
       currentIndex: 0,

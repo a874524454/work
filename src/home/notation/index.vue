@@ -1,7 +1,7 @@
 <template>
 <div class="p">
  <div class="header">
-    {{this.$t("localization.notation")}}
+    {{this.$t("localization.画笔批注")}}
   </div>
   <div class="main">
     <!-- <div class="abc"> -->

@@ -3,8 +3,8 @@
     <el-header>
       
       <div class="zi">
-        <span>{{this.$t("localization.meettype")}}：{{this.$t("localization.meet")}}</span>
-        <span>{{this.$t("localization.presider")}}：xxx</span>
+        <span>{{this.$t("localization.会议类型")}}：{{this.$t("localization.手动会议")}}</span>
+        <span>{{this.$t("localization.主持者")}}：xxx</span>
       </div>
       <el-select v-model="value" @change="switchLanguage(value)" class="el-select">
         <el-option
@@ -22,22 +22,22 @@
         mode="horizontal"
       >
         <el-submenu index="1">
-          <template slot="title">{{this.$t("localization.menu")}}</template>
+          <template slot="title">{{this.$t("localization.菜单")}}</template>
           <el-menu-item index="/home/index">
             <i class="el-icon-document"></i>
-            <span slot="title">{{this.$t("localization.information")}}</span>
+            <span slot="title">{{this.$t("localization.'会议信息'")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/information">
             <i class="el-icon-folder-opened"></i>
-            <span slot="title">{{this.$t("localization.Isinformation")}}</span>
+            <span slot="title">{{this.$t("localization.议题资料")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/notation">
             <i class="el-icon-edit-outline"></i>
-            <span slot="title">{{this.$t("localization.notation")}}</span>
+            <span slot="title">{{this.$t("localization.画笔批注")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/vote">
             <i class="el-icon-finished"></i>
-            <span slot="title">{{this.$t("localization.vote")}}</span>
+            <span slot="title">{{this.$t("localization.投票表决")}}</span>
           </el-menu-item>
         </el-submenu>
       </el-menu>
@@ -53,19 +53,19 @@
       >
         <el-menu-item index="/home/index">
           <i class="el-icon-document"></i>
-          <span slot="title">{{this.$t("localization.information")}}</span>
+          <span slot="title">{{this.$t("localization.会议信息")}}</span>
         </el-menu-item>
         <el-menu-item index="/home/information">
           <i class="el-icon-folder-opened"></i>
-          <span slot="title">{{this.$t("localization.Isinformation")}}</span>
+          <span slot="title">{{this.$t("localization.议题资料")}}</span>
         </el-menu-item>
         <el-menu-item index="/home/notation">
           <i class="el-icon-edit-outline"></i>
-          <span slot="title">{{this.$t("localization.notation")}}</span>
+          <span slot="title">{{this.$t("localization.画笔批注")}}</span>
         </el-menu-item>
         <el-menu-item index="/home/vote">
           <i class="el-icon-finished"></i>
-          <span slot="title">{{this.$t("localization.vote")}}</span>
+          <span slot="title">{{this.$t("localization.投票表决")}}</span>
         </el-menu-item>
       </el-menu>
       <!-- </el-aside> -->
@@ -240,7 +240,7 @@ export default {
   background-size: cover;
   background-position: top left;
   .el-select{
-    width: 110px;
+    width: 40px;
   }
   .el-menu-item {
     color: white;

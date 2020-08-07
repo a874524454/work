@@ -4,27 +4,27 @@
       :data="tableData">
       <el-table-column
         prop="seat"
-        :label="this.$t('localization.seat')">
+        :label="this.$t('localization.座位')">
       </el-table-column>
       <el-table-column
         prop="name"
-        :label="this.$t('localization.name')">
+        :label="this.$t('localization.姓名')">
       </el-table-column>
       <el-table-column
         prop="department"
-        :label="this.$t('localization.department')">
+        :label="this.$t('localization.部门')">
       </el-table-column>
       <el-table-column
         prop="title"
-        :label="this.$t('localization.title')">
+        :label="this.$t('localization.职称')">
       </el-table-column>
       <el-table-column
         prop="permissions"
-        :label="this.$t('localization.permissions')">
+        :label="this.$t('localization.会议权限')">
       </el-table-column>
       <el-table-column
         prop="time"
-        :label="this.$t('localization.stime')">
+        :label="this.$t('localization.签到时间')">
       </el-table-column>
     </el-table>
   </div>
@@ -37,7 +37,7 @@
           tableData: [
           {
             seat: '1',
-            name: '王小虎',
+            name: this.$t('王小虎'),
             department: '国务院',
             title:'常委',
             permissions:'会议主持',

@@ -21,20 +21,25 @@ Vue.use(VueI18n)
 Vue.use(ElementUI, { zhLocale });
 Vue.use(VueDirectiveImagePreviewer) 
 Vue.use(less)
-Vue.use(ElementUI)
 function aca() {
   return VueCookies.get('DefaultLanguage') == null ? 'zh-CN' : VueCookies.get('DefaultLanguage');
 }
-console.log(aca());
  const i18n = new VueI18n({
   locale:aca(),
-  // locale:this.$cookies.get("DefaultLanguage")||'zh-CN',
+  // locale:VueCookies.get('DefaultLanguage')||'zh-CN',
   messages: {
     'en-US': Object.assign(require("../static/lang/en"),enLocale),
     'zh-CN': Object.assign(require("../static/lang/zh"),zhLocale)
   }
 });
 locale.i18n((key, value) => i18n.t(key, value));
+
+
+window.vm=new Vue({
+  i18n,
+  router,
+  render: h => h(App),
+}).$mount('#app')
 
 new Vue({
   i18n,
