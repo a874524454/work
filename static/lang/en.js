@@ -30,6 +30,14 @@ module.exports = {
      '相关部门':'relevant departments',
      '实施食品安全战略':'Implement the food safety strategy',
      '扩大中等收入群体':'We will expand the middle-income group',
-     '促进2020全面小康':'Promote all-round well-off 2020'
+     '促进2020全面小康':'Promote all-round well-off 2020',
+     '表决标题':'title',
+     '表决内容':'content',
+     '实施食品安全战略，让人民吃得放心':'We will implement a food safety strategy to ensure that people can eat at ease',
+     '表决选项':'options',
+     '单选':'Multiple Choice',
+     '赞成':'agree',
+     '反对':'against',
+     '匿名':'anonymous'
     }
    }

@@ -7,14 +7,14 @@
       @click-left="goBack()"
     />
     <div class="main">
-      <p class="title">表决名称</p>
-      <p class="c">实施食品安全战略</p>
-      <p class="title">表决内容</p>
-      <p class="c">实施食品安全战略，让人民吃得放心</p>
-      <p class="title">表决选项</p>
-      <p class="c">单选:赞成,反对</p>
-      <p class="title">类型</p>
-      <p class="c">匿名表决</p>
+      <p class="title">{{this.$t("localization.表决标题")}}</p>
+      <p class="c">{{this.$t("localization.实施食品安全战略")}}</p>
+      <p class="title">{{this.$t("localization.表决内容")}}</p>
+      <p class="c">{{this.$t("localization.实施食品安全战略，让人民吃得放心")}}</p>
+      <p class="title">{{this.$t("localization.表决选项")}}</p>
+      <p class="c">{{this.$t("localization.单选")}}:{{this.$t("localization.赞成")}},{{this.$t("localization.反对")}}</p>
+      <p class="title">{{this.$t("localization.会议类型")}}</p>
+      <p class="c">{{this.$t("localization.匿名")}}</p>
       <p class="title">状态</p>
       <p class="c">未表决</p>
     </div>
