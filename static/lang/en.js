@@ -59,4 +59,4 @@ module.exports = {
      返回:'back',
      简体中文:'Simplified Chinese',
      English:'English'
-   }
+}

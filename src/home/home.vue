@@ -15,12 +15,18 @@
         ></el-option>
       </el-select>
       <el-menu
-        default-active="1"
+        :default-active="active"
+        class="el-menu-vertical-demo"
+        router
+        mode="horizontal"
+      >
+      <!-- <el-menu
+        :default-active="active"
         class="el-menu-vertical-demo"
         router
         menu-trigger="click"
         mode="horizontal"
-      >
+      > -->
         <el-submenu index="1">
           <template slot="title">{{this.$t("localization.菜单")}}</template>
           <el-menu-item index="/home/index">
@@ -82,7 +88,7 @@
 export default {
   data() {
     return {
-      active: 0,
+      active: '1',
       show: false,
       isCollapse: false,
       value: this.$i18n.locale,
@@ -113,17 +119,18 @@ export default {
     }
   },
   methods: {
-        switchLanguage(value) {
-        if (value == "zh-CN") {
-            this.$i18n.locale = "zh-CN";
-        } else if (value == "en-US") {
-            this.$i18n.locale = "en-US";
-        }
-        //在选择了显示的语言后，将配置保存到Cookie中
-        // this.$cookie.set("DefaultLanguage",value,{expires: "30m"});                     
-        this.$cookies.set("DefaultLanguage",value);
-        this.$cookies.get("DefaultLanguage");
-        }
+    switchLanguage(value) {
+      if (value == "zh-CN") {
+        this.$i18n.locale = "zh-CN";
+      } else if (value == "en-US") {
+        this.$i18n.locale = "en-US";
+      }
+      //在选择了显示的语言后，将配置保存到Cookie中
+      // this.$cookie.set("DefaultLanguage",value,{expires: "30m"});                     
+      this.$cookies.set("DefaultLanguage",value);
+      console.log(this.$cookies.get("DefaultLanguage"));
+
+    }
   }
 };
 </script>
@@ -134,10 +141,11 @@ export default {
     flex-direction: column;
   }
   .el-submenu__title:hover {
-    background-image: url("../assets/timg.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: top right;
+    background-color: rgba(192, 101, 101, 0) !important;
+    // background-image: url("../assets/timg.jpg");
+    // background-repeat: no-repeat;
+    // background-size: cover;
+    // background-position: top right;
   }
   .el-submenu {
     box-sizing: border-box;
