@@ -72,16 +72,8 @@ export default {
     //       ruleForm: {
     //         username: '',
     //         pass: ''
-    //       },
-    //       rules: {
-    //         username: [
-    //           { validator: validateUser, trigger: 'blur' }
-    //         ],
-    //         pass: [
-    //           { validator: validatePass, trigger: 'blur' }
-    //         ]
     //       }
-    //     };
+    //     }
     return {
       username: "",
       password: "",
