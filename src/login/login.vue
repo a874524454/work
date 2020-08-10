@@ -89,7 +89,7 @@ export default {
         },
         {
         value: "zh-CN",
-        label: this.$t("中文简体")
+        label: this.$t("简体中文")
         }
       ]}
   }
@@ -105,15 +105,12 @@ export default {
   .el-input{
     width:120px !important;
   }
-  }
+}
 </style>
 <style scoped lang='less'>
-  .menu{
+.menu{
   .el-select{
     margin-left: 20px;
-  }
-  .el-input{
-    width:120px !important;
   }
 }
 .login{

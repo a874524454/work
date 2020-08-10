@@ -102,14 +102,15 @@ export default {
     language(){
       return[
         {
-        value: "en-US",
-        label:this.$t("English")
+          value: "en-US",
+          label:this.$t("English")
         },
         {
-        value: "zh-CN",
-        label: this.$t("中文简体")
+          value: "zh-CN",
+          label: this.$t("简体中文")
         }
-      ]}
+      ]
+    }
   },
   methods: {
         switchLanguage(value) {

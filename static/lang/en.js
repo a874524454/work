@@ -57,7 +57,6 @@ module.exports = {
      议题二:'Issue two',
      议题三:'Issue three',
      返回:'back',
-     中文简体:'Simplified Chinese',
-     English:'English',
-     
+     简体中文:'Simplified Chinese',
+     English:'English'
    }
