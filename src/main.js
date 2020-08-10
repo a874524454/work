@@ -16,11 +16,13 @@ import locale from 'element-ui/lib/locale'
 import enLocale from 'element-ui/lib/locale/lang/en'
 import zhLocale from 'element-ui/lib/locale/lang/zh-CN'
 import VueCookies from 'vue-cookies'
+import axios from 'axios'
 Vue.use(VueCookies)
 Vue.use(VueI18n)
 Vue.use(ElementUI, { zhLocale });
 Vue.use(VueDirectiveImagePreviewer) 
 Vue.use(less)
+Vue.prototype.$http = axios;
 function aca() {
   return VueCookies.get('DefaultLanguage') == null ? 'zh-CN' : VueCookies.get('DefaultLanguage');
 }
@@ -30,7 +32,8 @@ function aca() {
   messages: {
     'en-US': Object.assign(require("../static/lang/en"),enLocale),
     'zh-CN': Object.assign(require("../static/lang/zh"),zhLocale)
-  }
+  },
+  silentTranslationWarn: true
 });
 locale.i18n((key, value) => i18n.t(key, value));
 
@@ -40,7 +43,7 @@ window.vm=new Vue({
   router,
   render: h => h(App),
 })
-//挂载两次，生命钩子函数会执行两次，去掉上一个挂载可以解决，不知道是否有bug
+//v-for国际化需要挂载两次
 new Vue({
   i18n,
   router,

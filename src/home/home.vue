@@ -25,7 +25,7 @@
           <template slot="title">{{this.$t("localization.菜单")}}</template>
           <el-menu-item index="/home/index">
             <i class="el-icon-document"></i>
-            <span slot="title">{{this.$t("localization.'会议信息'")}}</span>
+            <span slot="title">{{this.$t("localization.会议信息")}}</span>
           </el-menu-item>
           <el-menu-item index="/home/information">
             <i class="el-icon-folder-opened"></i>
@@ -86,25 +86,31 @@ export default {
       show: false,
       isCollapse: false,
       value: this.$i18n.locale,
-       language: [
-            {
-            value: "en-US",
-            label: "English"
-            },
-            {
-            value: "zh-CN",
-            label: "中文简体"
-            }
-      ]
+      // language: [
+      //   {
+      //   value: "en-US",
+      //   label:this.$t("English")
+      //   },
+      //   {
+      //   value: "zh-CN",
+      //   label: this.$t("中文简体")
+      //   }
+      // ]
     };
   },
-  // created() {
-  //   this.$nextTick(() => {
-  //     if (document.body.clientWidth > 414) {
-  //       this.isCollapse = false;
-  //     }
-  //   });
-  // },
+  computed: {
+    language(){
+      return[
+        {
+        value: "en-US",
+        label:this.$t("English")
+        },
+        {
+        value: "zh-CN",
+        label: this.$t("中文简体")
+        }
+      ]}
+  },
   methods: {
         switchLanguage(value) {
         if (value == "zh-CN") {
@@ -117,7 +123,7 @@ export default {
         this.$cookies.set("DefaultLanguage",value);
         this.$cookies.get("DefaultLanguage");
         }
-    }
+  }
 };
 </script>
 <style lang='less'>
@@ -198,7 +204,7 @@ export default {
   .el-menu-item {
     padding-left: 12px !important;
     span {
-      font-size: 10px;
+      font-size: 14px;
     }
     div {
       padding: 12px;

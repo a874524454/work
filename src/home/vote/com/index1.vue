@@ -1,8 +1,8 @@
 <template>
   <div class="content">
     <van-nav-bar
-      title="表决内容"
-      left-text="返回"
+      :title="this.$t('localization.表决内容')"
+      :left-text="this.$t('localization.返回')"
       left-arrow
       @click-left="goBack()"
     />
@@ -10,7 +10,7 @@
       <p class="title">{{this.$t("localization.表决标题")}}</p>
       <p class="c">{{this.$t("localization.实施食品安全战略")}}</p>
       <p class="title">{{this.$t("localization.表决内容")}}</p>
-      <p class="c">{{this.$t("localization.实施食品安全战略，让人民吃得放心")}}</p>
+      <p class="c">{{this.$t("localization.实施食品安全战略内容")}}</p>
       <p class="title">{{this.$t("localization.表决选项")}}</p>
       <p class="c">{{this.$t("localization.单选")}}:{{this.$t("localization.赞成")}},{{this.$t("localization.反对")}}</p>
       <p class="title">{{this.$t("localization.会议类型")}}</p>

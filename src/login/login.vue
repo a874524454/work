@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="menu">
-      <el-select v-model="value" @change="switchLanguage(value)" class="el-select">
+      <el-select v-model="value" @change="switchLanguage(value)">
         <el-option
           v-for="item in language"
           :key="item.value"
@@ -22,11 +22,12 @@
     <div class="login">
       <van-form @submit="onSubmit">
         <van-field
+          validate-first
           v-model="username"
           name="用户名"
           :label="this.$t('localization.用户名')"
           placeholder="用户名"
-          :rules="[{ required: true, message: '请填写用户名' }]"
+          :rules="[{ required: true, message: '请填写用户名' },{min: 6,max: 12,message: '长度在 6 到 12 个字符'}]"
         />
         <van-field
           v-model="password"
@@ -47,68 +48,20 @@
 <script>
 export default {
   data() {
-    //     var validateUser = (rule, value, callback) => {
-    //       if (value === '') {
-    //         callback(new Error('请输入用户名'));
-    //       }else if(value.length<6){
-    //         callback(new Error('用户名不能少于六位数'));
-    //       } else{
-    //         callback();
-    //       }
-    //     };
-    //     var validatePass = (rule, value, callback) => {
-    //       if (value === '') {
-    //         callback(new Error('请输入密码'));
-    //       }else if(value.length<6){
-    //         callback(new Error('密码不能少于六位数'));
-    //       } else {
-    //         // if (this.ruleForm.pass !== '') {
-    //         //   this.$refs.ruleForm.validateField('pass');
-    //         // }
-    //         callback();
-    //       }
-    //     };
-    //     return {
-    //       ruleForm: {
-    //         username: '',
-    //         pass: ''
-    //       }
-    //     }
     return {
       username: "",
       password: "",
       value: this.$i18n.locale,
-       language: [
-            {
-            value: "en-US",
-            label: "English"
-            },
-            {
-            value: "zh-CN",
-            label: "中文简体"
-            }
-      ]
     };
   },
   methods: {
-    // submitForm(formName) {
-    //     this.$refs[formName].validate((valid) => {
-    //       if (valid) {
-    //         alert('submit!');
-    //         this.$router.push("/home");
-    //       } else {
-    //         console.log('error submit!!');
-    //         return false;
-    //       }
-    //     });
-    //   },
     switchLanguage(value) {
         if (value == "zh-CN") {
             this.$i18n.locale = "zh-CN";
         } else if (value == "en-US") {
             this.$i18n.locale = "en-US";
         }
-        //在选择了显示的语言后，将配置保存到Cookie中
+        //在选择了显示的语言后，将配置保存到Cookie中,保质期三十分钟
         // this.$cookie.set("DefaultLanguage",value,{expires: "30m"});                     
         this.$cookies.set("DefaultLanguage",value);
         this.$cookies.get("DefaultLanguage");
@@ -127,16 +80,42 @@ export default {
       this.$refs[formName].resetFields();
     },
   },
+  computed: {
+    language(){
+      return[
+        {
+        value: "en-US",
+        label:this.$t("English")
+        },
+        {
+        value: "zh-CN",
+        label: this.$t("中文简体")
+        }
+      ]}
+  }
 };
 </script>
-<style>
+<style lang='less'>
 @media screen and (min-width: 0px) {
   html {
     font-size: 100px !important;
   }
 }
+.menu{
+  .el-input{
+    width:120px !important;
+  }
+  }
 </style>
 <style scoped lang='less'>
+  .menu{
+  .el-select{
+    margin-left: 20px;
+  }
+  .el-input{
+    width:120px !important;
+  }
+}
 .login{
   display: flex;
   flex-direction: column;

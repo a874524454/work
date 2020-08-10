@@ -28,12 +28,12 @@ module.exports = {
      时间:'time',
      提出部门:'Put forward the department',
      相关部门:'relevant departments',
-     实施食品安全战略:'Implement the food safety strategy',
+     实施食品安全战略内容:'Implement the food safety strategy',
      扩大中等收入群体:'We will expand the middle-income group',
      促进2020全面小康:'Promote all-round well-off 2020',
      表决标题:'title',
      表决内容:'content',
-     '实施食品安全战略，让人民吃得放心':'We will implement a food safety strategy to ensure that people can eat at ease',
+     实施食品安全战略:'We will implement a food safety strategy to ensure that people can eat at ease',
      表决选项:'options',
      单选:'Multiple Choice',
      赞成:'agree',
@@ -49,10 +49,15 @@ module.exports = {
      议题一:'Issue a',
      国务院:'The State Council',
      上一页:'previous',
-     下一页:'next'
+     下一页:'next',
+     返回:'back'
     },
      国务院:'The State Council',
      议题一:'Issue one',
      议题二:'Issue two',
      议题三:'Issue three',
+     返回:'back',
+     中文简体:'Simplified Chinese',
+     English:'English',
+     
    }
