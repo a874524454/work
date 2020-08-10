@@ -1,41 +1,30 @@
 <template>
   <div id="app">
     <div class="menu">
+      <el-select v-model="value" @change="switchLanguage(value)" class="el-select">
+        <el-option
+          v-for="item in language"
+          :key="item.value"
+          :label="item.label"
+          :value="item.value"
+        ></el-option>
+      </el-select>
       <el-dropdown>
         <el-button type="primary">
-          更多菜单
+          {{this.$t("localization.菜单")}}
           <i class="el-icon-arrow-down el-icon--right"></i>
         </el-button>
         <el-dropdown-menu slot="dropdown">
-          <el-dropdown-item>历史会议</el-dropdown-item>
+          <el-dropdown-item>{{this.$t("localization.历史会议")}}</el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
     </div>
-    <!-- <el-form
-      :model="ruleForm"
-      status-icon
-      :rules="rules"
-      ref="ruleForm"
-      label-width="65px"
-      class="demo-ruleForm"
-    >
-      <el-form-item label="用户名" prop="username">
-        <el-input type="username" v-model="ruleForm.username" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item label="密码" prop="pass">
-        <el-input type="password" v-model="ruleForm.pass" autocomplete="off"></el-input>
-      </el-form-item>
-      <el-form-item>
-        <el-button type="primary" @click="submitForm('ruleForm')">提交</el-button>
-        <el-button @click="resetForm('ruleForm')">重置</el-button>
-      </el-form-item>
-    </el-form>-->
     <div class="login">
       <van-form @submit="onSubmit">
         <van-field
           v-model="username"
           name="用户名"
-          label="用户名"
+          :label="this.$t('localization.用户名')"
           placeholder="用户名"
           :rules="[{ required: true, message: '请填写用户名' }]"
         />
@@ -43,12 +32,12 @@
           v-model="password"
           type="password"
           name="密码"
-          label="密码"
+          :label="this.$t('localization.密码')"
           placeholder="密码"
           :rules="[{ required: true, message: '请填写密码' }]"
         />
         <div style="margin: 16px;">
-          <van-button round block type="info" native-type="submit">提交</van-button>
+          <van-button round block type="info" native-type="submit">{{this.$t('localization.提交')}}</van-button>
         </div>
       </van-form>
     </div>
@@ -96,6 +85,17 @@ export default {
     return {
       username: "",
       password: "",
+      value: this.$i18n.locale,
+       language: [
+            {
+            value: "en-US",
+            label: "English"
+            },
+            {
+            value: "zh-CN",
+            label: "中文简体"
+            }
+      ]
     };
   },
   methods: {
@@ -110,6 +110,17 @@ export default {
     //       }
     //     });
     //   },
+    switchLanguage(value) {
+        if (value == "zh-CN") {
+            this.$i18n.locale = "zh-CN";
+        } else if (value == "en-US") {
+            this.$i18n.locale = "en-US";
+        }
+        //在选择了显示的语言后，将配置保存到Cookie中
+        // this.$cookie.set("DefaultLanguage",value,{expires: "30m"});                     
+        this.$cookies.set("DefaultLanguage",value);
+        this.$cookies.get("DefaultLanguage");
+        },
     onSubmit(values) {
       if (values) {
         console.log("submit", values);

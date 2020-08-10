@@ -15,8 +15,8 @@
       <p class="c">{{this.$t("localization.单选")}}:{{this.$t("localization.赞成")}},{{this.$t("localization.反对")}}</p>
       <p class="title">{{this.$t("localization.会议类型")}}</p>
       <p class="c">{{this.$t("localization.匿名")}}</p>
-      <p class="title">状态</p>
-      <p class="c">未表决</p>
+      <p class="title">{{this.$t("localization.状态")}}</p>
+      <p class="c">{{this.$t("localization.未表决")}}</p>
     </div>
   </div>
 </template>

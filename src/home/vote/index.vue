@@ -1,6 +1,6 @@
 <template>
   <div class="vote">
-        <div class="header">投票列表</div>
+        <div class="header">{{this.$t('localization.投票列表')}}</div>
           <van-cell icon="bar-chart-o" :title="this.$t('localization.实施食品安全战略')" is-link to="index1" />
           <van-cell icon="bar-chart-o" :title="this.$t('localization.扩大中等收入群体')" is-link to="index1" />
           <van-cell icon="bar-chart-o" :title="this.$t('localization.促进2020全面小康')" is-link to="index1" />

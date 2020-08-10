@@ -11,9 +11,8 @@
     <!-- </div> -->
     </div>
   </div>
-  
   <div class="footer">
-    <van-pagination v-model="currentPage" :page-count="20" mode="simple"/>
+    <van-pagination :next-text='this.$t("localization.下一页")' :prev-text='this.$t("localization.上一页")' v-model="currentPage" :page-count="20" mode="simple"/>
   </div>
   </div>
 </template>

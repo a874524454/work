@@ -12,7 +12,7 @@
         <tr @click="changeContent(index)">
           <td>{{vm.$t("localization.议题")}}</td>
           <!-- <td>议题</td> -->
-          <td>{{item.title}}</td>
+          <td>{{vm.$t(item.title)}}</td>
         </tr>
         <tr v-show="item.show">
           <td>{{vm.$t("localization.时间")}}</td>
@@ -22,12 +22,12 @@
         <tr v-show="item.show">
           <td>{{vm.$t("localization.提出部门")}}</td>
           <!-- <td>提出部门</td> -->
-          <td>{{item.create}}</td>
+          <td>{{vm.$t('localization'+'.'+item.create)}}</td>
         </tr>
         <tr v-show="item.show">
           <td>{{vm.$t("localization.相关部门")}}</td>
           <!-- <td>相关部门</td> -->
-          <td>{{item.related}}</td>
+          <td>{{vm.$t(item.related)}}</td>
         </tr>
         <tr v-show="item.show" class="tu">
           <td colspan="3">
@@ -79,43 +79,43 @@ export default {
         {
           title: "议题二",
           time: "19.04-19.06",
-          create: "国务院1",
-          related: "国务院1",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
-          create: "国务院2",
-          related: "国务院2",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
-          create: "国务院2",
-          related: "国务院2",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
-          create: "国务院2",
-          related: "国务院2",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
-          create: "国务院2",
-          related: "国务院2",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
         {
           title: "议题三",
           time: "19.06-19.08",
-          create: "国务院2",
-          related: "国务院2",
+          create: "国务院",
+          related: "国务院",
           show: true,
         },
       ],
