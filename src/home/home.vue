@@ -247,7 +247,8 @@ export default {
   }
   .abc:not(.el-menu--collapse) {
     // min-height: 400px;
-    width: 100px !important;
+    width: 50px !important;
+    margin-left: 20px;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     // min-height: 400px;
