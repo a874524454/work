@@ -153,6 +153,7 @@ tr,
 td {
   border: 1px solid #000;
   border-collapse: collapse;
+  border-bottom: none;
 }
 table tr td {
   // width: 200px;

@@ -274,7 +274,7 @@ export default {
     width: 100px !important;
   }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
-    min-height: 400px;
+    // min-height: 400px;
     width: 210px !important;
   }
 }
