@@ -162,11 +162,9 @@ export default {
 </script>
 <style lang='less'>
 .home {
-
   .el-dropdown{
     width: 100%;
     text-align: center;
-    line-height:100px
   }
   .zi {
     display: flex;

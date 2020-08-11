@@ -11,22 +11,18 @@
         </tr>
         <tr @click="changeContent(index)">
           <td>{{vm.$t("localization.议题")}}</td>
-          <!-- <td>议题</td> -->
           <td>{{vm.$t(item.title)}}</td>
         </tr>
         <tr v-show="item.show">
           <td>{{vm.$t("localization.时间")}}</td>
-          <!-- <td>时间</td> -->
           <td>{{item.time}}</td>
         </tr>
         <tr v-show="item.show">
           <td>{{vm.$t("localization.提出部门")}}</td>
-          <!-- <td>提出部门</td> -->
           <td>{{vm.$t('localization'+'.'+item.create)}}</td>
         </tr>
         <tr v-show="item.show">
           <td>{{vm.$t("localization.相关部门")}}</td>
-          <!-- <td>相关部门</td> -->
           <td>{{vm.$t(item.related)}}</td>
         </tr>
         <tr v-show="item.show" class="tu">
