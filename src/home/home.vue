@@ -46,8 +46,8 @@
           </el-menu-item>
         </el-submenu>
       </el-menu> -->
-      <el-dropdown trigger="click" class="el-menu-vertical-demo">
-      <span class="el-dropdown-link" style="color:white">
+      <el-dropdown trigger="click" class="abc">
+      <span class="el-dropdown-link" style="color:white;">
         菜单<i class="el-icon-arrow-down el-icon--right"></i>
       </span>
       <el-dropdown-menu slot="dropdown">
@@ -162,6 +162,7 @@ export default {
 </script>
 <style lang='less'>
 .home {
+
   .el-dropdown{
     width: 100%;
     text-align: center;
@@ -198,28 +199,18 @@ export default {
   .dis {
     display: none;
   }
-  .abc {
-    overflow-y: auto;
-    height: calc(100vh - 1.44rem);
-  }
   .home {
     .el-menu {
       height: 100%;
     }
   }
-}
-@media screen and (max-width: 767px) {
   .el-menu-item .el-tooltip {
     padding-left: 12px !important;
   }
 }
 @media (min-width: 767px) {
-  .el-menu-vertical-demo {
+  .el-menu-vertical-demo,.abc {
     display: none;
-  }
-  .abc {
-    overflow: auto;
-    height: 100%;
   }
   .el-main {
     padding: 0;
@@ -242,8 +233,8 @@ export default {
 <style scoped lang='less'>
 @media screen and (max-width: 500px) {
   .el-menu-item {
-    padding-left: 6px !important;
-    padding-right: 6px !important;
+    padding: 0 0.73333rem;
+    width:100%;
     span {
       font-size: 14px;
     }
@@ -256,9 +247,13 @@ export default {
     padding-left: 0;
     width: 40px !important;
   }
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    min-height: 400px;
+  .abc:not(.el-menu--collapse) {
+    // min-height: 400px;
     width: 100px !important;
+  }
+  .el-menu-vertical-demo:not(.el-menu--collapse) {
+    // min-height: 400px;
+    width: 210px !important;
   }
   .el-aside {
     width: 40px !important;
@@ -266,6 +261,8 @@ export default {
 }
 @media (min-width: 501px) {
   .el-menu-item {
+    padding: 0 0.73333rem;
+    width: 100%;
     span {
       font-size: 14px;
     }
@@ -274,9 +271,12 @@ export default {
   .el-menu {
     list-style: none;
   }
+  .abc:not(.el-menu--collapse) {
+    width: 100px !important;
+  }
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     min-height: 400px;
-    width: 150px !important;
+    width: 210px !important;
   }
 }
 .home {
@@ -332,9 +332,9 @@ export default {
   .el-menu-item i {
     color: #fff;
   }
-  .el-menu-vertical-demo:not(.el-menu--collapse) {
-    min-height: 100%;
-  }
+  // .el-menu-vertical-demo:not(.el-menu--collapse) {
+  //   min-height: 100%;
+  // }
 
 }
 </style>
