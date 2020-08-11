@@ -1,7 +1,6 @@
 <template>
   <div class="home">
     <el-header>
-      
       <div class="zi">
         <span>{{this.$t("localization.会议类型")}}：{{this.$t("localization.手动会议")}}</span>
         <span>{{this.$t("localization.主持者")}}：xxx</span>
@@ -14,19 +13,19 @@
           :value="item.value"
         ></el-option>
       </el-select>
-      <el-menu
+      <!-- <el-menu
         :default-active="active"
         class="el-menu-vertical-demo"
         router
         mode="horizontal"
       >
-      <!-- <el-menu
+       <el-menu
         :default-active="active"
         class="el-menu-vertical-demo"
         router
         menu-trigger="click"
         mode="horizontal"
-      > -->
+      >
         <el-submenu index="1">
           <template slot="title">{{this.$t("localization.菜单")}}</template>
           <el-menu-item index="/home/index">
@@ -46,10 +45,40 @@
             <span slot="title">{{this.$t("localization.投票表决")}}</span>
           </el-menu-item>
         </el-submenu>
+      </el-menu> -->
+      <el-dropdown trigger="click" class="el-menu-vertical-demo">
+      <span class="el-dropdown-link" style="color:white">
+        菜单<i class="el-icon-arrow-down el-icon--right"></i>
+      </span>
+      <el-dropdown-menu slot="dropdown">
+        <el-menu
+        :default-active="active"
+        class="el-menu-vertical-demo"
+        router
+        mode="horizontal"
+      >
+          <template slot="title">{{this.$t("localization.菜单")}}</template>
+          <el-menu-item index="/home/index">
+            <i class="el-icon-document"></i>
+            <span slot="title">{{this.$t("localization.会议信息")}}</span>
+          </el-menu-item>
+          <el-menu-item index="/home/information">
+            <i class="el-icon-folder-opened"></i>
+            <span slot="title">{{this.$t("localization.议题资料")}}</span>
+          </el-menu-item>
+          <el-menu-item index="/home/notation">
+            <i class="el-icon-edit-outline"></i>
+            <span slot="title">{{this.$t("localization.画笔批注")}}</span>
+          </el-menu-item>
+          <el-menu-item index="/home/vote">
+            <i class="el-icon-finished"></i>
+            <span slot="title">{{this.$t("localization.投票表决")}}</span>
+          </el-menu-item>
       </el-menu>
+      </el-dropdown-menu>
+    </el-dropdown>
     </el-header>
     <el-container style="height: 100%;">
-      <!-- <el-aside width="auto" class="dis"> -->
       <el-menu
         default-active="1"
         router
@@ -74,11 +103,8 @@
           <span slot="title">{{this.$t("localization.投票表决")}}</span>
         </el-menu-item>
       </el-menu>
-      <!-- </el-aside> -->
       <el-main>
-        <!-- <div class="abc"> -->
         <router-view></router-view>
-        <!-- </div> -->
       </el-main>
     </el-container>
   </div>
@@ -136,6 +162,11 @@ export default {
 </script>
 <style lang='less'>
 .home {
+  .el-dropdown{
+    width: 100%;
+    text-align: center;
+    line-height:100px
+  }
   .zi {
     display: flex;
     flex-direction: column;
@@ -211,7 +242,8 @@ export default {
 <style scoped lang='less'>
 @media screen and (max-width: 500px) {
   .el-menu-item {
-    padding-left: 12px !important;
+    padding-left: 6px !important;
+    padding-right: 6px !important;
     span {
       font-size: 14px;
     }
@@ -235,7 +267,7 @@ export default {
 @media (min-width: 501px) {
   .el-menu-item {
     span {
-      font-size: 10px;
+      font-size: 14px;
     }
   }
 
@@ -295,6 +327,7 @@ export default {
     // background-size:cover;
     // background-position:top right;
     background-color: rgba(192, 101, 101, 0) !important;
+    
   }
   .el-menu-item i {
     color: #fff;
@@ -302,5 +335,6 @@ export default {
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     min-height: 100%;
   }
+
 }
 </style>

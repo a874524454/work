@@ -1,0 +1,11 @@
+module.exports={
+   object:{
+       "年":"year",
+       "月":"month",
+       "周":"week",
+       "日":"day",
+       "时":"hour",
+       "分":"minute",
+       "秒":"seconds",
+  }
+}

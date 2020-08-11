@@ -36,6 +36,7 @@ function aca() {
   silentTranslationWarn: true
 });
 locale.i18n((key, value) => i18n.t(key, value));
+console.log(Object.assign(require("../static/lang/en"),enLocale));
 
 
 window.vm=new Vue({
@@ -43,7 +44,7 @@ window.vm=new Vue({
   router,
   render: h => h(App),
 })
-//v-for国际化需要挂载两次
+//v-for国际化需要两次
 new Vue({
   i18n,
   router,

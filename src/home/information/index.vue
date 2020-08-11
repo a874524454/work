@@ -47,18 +47,11 @@
 </template>
 <script>
 import pdf from "vue-pdf";
-var that;
 export default {
   components: {
     pdf,
   },
-  beforeCreate() {
-    that=this
-    console.log(that);
-  },
-  created() {
-    console.log(that);
-  },
+
   data() {
     return {
       vm: window.vm,
