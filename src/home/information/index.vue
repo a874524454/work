@@ -155,6 +155,9 @@ td {
   border-collapse: collapse;
   border-bottom: none;
 }
+table:last-child td{
+  border: 1px solid #000;
+}
 table tr td {
   // width: 200px;
   padding: 5px 10px;
